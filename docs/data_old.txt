@@ -1,0 +1,89 @@
+// set form validation rule
+            $this->form_validation->set_rules('po-number', 'PO Number', 'required|is_unique[order_meta_data.po_number]|numeric');
+            $this->form_validation->set_rules('po-date', 'PO Date', 'required');
+            $this->form_validation->set_rules('supplier', 'Supplier', 'required');
+            $this->form_validation->set_rules('key-person', 'Key Person', 'required');
+            $this->form_validation->set_rules('product-code', 'Product Code', 'required|numeric');
+            $this->form_validation->set_rules('product-name', 'Product Name', 'required');
+            $this->form_validation->set_rules('product-count', 'Quantity', 'required|numeric');
+            $this->form_validation->set_rules('product-price', 'Product Price', 'required|numeric');
+            
+            
+            if($this->form_validation->run() == FALSE)
+            {
+                // load the order_form.php view
+                $this->load->view('order/order', $data);
+            }
+            else
+            {
+   
+                $status = 'Order Sent';
+                if($save_order)
+                {
+                    $save_meta_data = $this->order_meta_data_model->save_meta_data($po_number, $po_date, $supplier, $key_person, $address, $instruction, $total_order, $status);
+                    //$save_data = $this->order_data_model->save_data($po_number, $po_date, $product_code, $product_number, $product_name, $product_count, $unit_type, $buy_price, $product_total);
+                }
+               
+            }
+
+
+
+
+
+$('#save-order').click(function(){
+						/*
+						$("input[name^=product-count]").each(function() {
+							$("input[name^=product-total]").val($(this).val());
+							return false;
+	                    });
+						
+						return false;
+	                    */
+						var arr = [];						
+						$("input[name^=product-count]").each(function() {
+    						//alert(index + ': ' + $(this).val());
+							var items = $(this).val();
+							arr.push(items);
+						});
+						
+						alert(arr);
+						
+						
+						//var test = $("input[name^=product-total]").length;
+						
+						/*
+						$.each(arr, 
+						
+							function(intIndex, objValue) 
+							{
+								alert(objValue);
+								
+							}
+						
+						
+						
+						);
+						*/
+						
+						
+						
+						z = 0;					
+						while(z < arr.length)
+						{
+							var i = bar();
+							var nam = "product-total-" + i;
+							//$("input[name^=" + nam + "]").val(arr[z]);
+							alert(nam);
+							z++;
+						}
+						
+				
+						
+						return false;
+						
+						/*
+						var count = $("input[name^=product-count]").val();
+						$("input[name^=product-total]").val(count);
+						return false;
+						*/
+	                });

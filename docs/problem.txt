@@ -1,0 +1,13 @@
+Problemo :
+
+#1 Adding table row dynamically :
+
+	solved :
+
+	- http://stackoverflow.com/questions/2145012/adding-rows-dynamically-with-jquery
+
+#2 Loading data from controller using jquery
+
+#3 Automatic addition using jquery, from array input :
+
+	solved

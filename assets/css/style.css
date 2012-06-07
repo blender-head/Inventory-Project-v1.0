@@ -1,0 +1,575 @@
+/*
+
+	TABLE OF CONTENTS :
+	
+	1. RESET STYLES
+	2. COMMON STYLES
+	3. HEADER STYLES
+	4. CONTENT STYLES :
+		* form order styles
+		* common content styles
+		* table order styles
+	5. FOOTER STYLES
+	6. FORM ERROR STYLES
+
+
+
+*/
+
+
+
+/* RESET STYLES */
+
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+/* END RESET STYLES */
+
+
+
+/* COMMON STYLES */
+
+body {
+	background-color: #6d7475;
+}
+
+div#wrapper {
+	width: 925px;
+	margin-left: auto;
+	margin-right: auto;
+	background: #e8e8e8;
+	margin-top: 60px;
+	margin-bottom: 60px;
+	padding-bottom: 20px;
+}
+
+.clear {
+	clear: both;	
+}
+
+/* END COMMON STYLES */
+
+
+
+/* HEADER STYLES */
+
+div#header {
+	width: 925px;
+  	padding-top: 20px;
+}
+
+div#logo {
+	width: 236px;
+	height: 55px;	
+	position: relative;
+	top: -30px;
+	left: -13px;
+}
+
+div#search {
+	width: 223px;
+	height: 43px;
+	background: #000;
+	float: right;	
+	position: relative;
+	top: -86px;
+}
+
+div#menu {
+	width: 925px;
+	height: 30px;
+	background: #a3abaf;	
+}
+
+ul#menu-list {
+	position: relative;
+	left: 250px;
+}
+
+ul#menu-list li a {
+	display: block;
+	float: left;
+	text-decoration: none;
+	color: #fff;
+	background-image: url(../image/menu.png);
+	text-indent: -9999px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+}
+
+ul#menu-list li a.master {
+	width: 83px;
+	height: 30px;
+	background-position: 0px 0px;
+}
+
+ul#menu-list li a.master:hover {
+	background-position: 0 -30px;
+}
+
+ul#menu-list li a.transaction {
+	width: 91px;
+	height: 30px;
+	background-position: -81px 0px;	
+}
+
+ul#menu-list li a.transaction:hover {
+	background-position: -81px -30px;
+}
+
+ul#menu-list li a.report {
+	width: 70px;
+	height: 30px;
+	background-position: -172px 0px;	
+}
+
+ul#menu-list li a.report:hover {
+	background-position: -172px -30px;
+}
+
+ul#menu-list li a.graphics {
+	width: 72px;
+	height: 30px;
+	background-position: -242px 0px;	
+}
+
+ul#menu-list li a.graphics:hover {
+	background-position: -242px -30px;
+}
+
+ul#menu-list li a.utility {
+	width: 75px;
+	height: 30px;
+	background-position: -310px 0px;	
+}
+
+ul#menu-list li a.utility:hover {
+	background-position: -310px -30px;
+}
+
+/* END HEADER STYLES */
+
+
+/* CONTENT STYLES */
+
+/* common content styles */
+
+div#content {
+	width: 925px;
+}
+
+div#content-inner {
+	width: 881px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div#content-inner div.content-header-wrapper {
+	width: 142px;
+	height: 33px;
+ 	background-image: url(../image/content-header-bg.png);
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+
+div#content-inner h1.content-header {
+	width: 99px;
+	height: 15px;
+	background: url(../image/order-form-header.png) no-repeat;
+	text-indent: -9999px;
+	overflow: hidden;
+	position: relative;
+	top: 9px;
+	left: 20px;
+}
+
+div#main-content {
+	width: 855px;
+	background: #fff;
+	padding: 15px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div#main-content-inner {
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 2px solid #e8e8e8;	
+	padding: 25px;
+}
+
+div#main-content-inner p.para-common {
+	font-family: "Monotype Corsiva";
+	font-size: 18px;
+	color: #a3abaf;	
+	margin-top: 40px;
+	display: block;
+}
+
+div#main-content-inner span {
+	font-family: ChunkFive;
+	font-size: 14px;
+	color: #000000;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+/* end common content styles */
+
+/* form order styles */
+
+div#main-content-inner div.form-item {
+	margin-bottom: 30px;	
+}
+
+div#main-content-inner label {
+	font-family: "Monotype Corsiva";
+	font-size: 18px;
+	color: #a3abaf;	
+}
+
+input#po-number {
+	margin-left: 94px;
+	width: 223px;
+	height: 17px;
+	background: #e8e8e8;
+	border: none;
+	padding: 5px;
+	font-family: "Graublau Web";
+	font-size: 14px;
+	letter-spacing: .2em;
+}
+
+input#po-date {
+	margin-left: 112px;	
+	width: 223px;
+	height: 17px;
+	background: #e8e8e8;
+	border: none;	
+	padding: 5px;
+	font-family: "Graublau Web";
+	font-size: 14px;
+	letter-spacing: .2em;
+}
+
+input#supplier {
+	margin-left: 116px;	
+	width: 223px;
+	height: 17px;
+	background: #e8e8e8;
+	border: none;	
+	padding: 5px;
+	font-family: "Graublau Web";
+	font-size: 14px;
+	letter-spacing: .2em;
+}
+
+input#key-person {
+	margin-left: 98px;	
+	width: 223px;
+	height: 17px;
+	background: #e8e8e8;
+	border: none;	
+	padding: 5px;
+	font-family: "Graublau Web";
+	font-size: 14px;
+	letter-spacing: .2em;
+}
+
+div#main-content-inner label#label-float {
+	display: block;
+	float: left;	
+}
+
+div#main-content-inner textarea#address {
+	width: 223px;
+	background: #e8e8e8;
+	border: none;	
+	float: left;
+	padding: 5px;
+	margin-left: 68px;
+	font-family: "Graublau Web";
+	font-size: 14px;
+	letter-spacing: .2em;
+}
+
+div#main-content-inner textarea#instruction {
+	width: 223px;
+	background: #e8e8e8;
+	border: none;	
+	float: left;
+	padding: 5px;
+	margin-left: 50px;
+	font-family: "Graublau Web";
+	font-size: 14px;
+	letter-spacing: .2em;
+}
+
+/* end form order styles */
+
+/* table order styles */
+
+table#table-order {
+	width: 800px;
+	margin-top: 20px;
+	border-collapse: collapse;
+	border: 1px solid #e8e8e8;
+}
+
+table#table-order th {
+	background: #202b30;
+	padding: 10px;
+	font-family: ChunkFive;
+	font-size: 14px;
+	color: #7db4b5;
+	border: 2px solid #e8e8e8;
+}
+
+table#table-order td {
+	border: 2px solid #e8e8e8;
+	padding: 5px;
+}
+
+table#table-order td input {
+	width: 223px;
+	height: 17px;
+	background: #e8e8e8;
+	border: none;	
+	padding: 5px;
+	font-family: "Graublau Web";
+	font-size: 14px;
+	letter-spacing: .2em;
+}
+
+table#table-order td.td-product-code {
+	width: 2%;
+	text-align: center;
+}
+
+table#table-order td.td-product-code input {
+	width: 80px;
+}
+
+table#table-order td.td-product-name {
+	width: 10%;
+	text-align: center;
+}
+
+table#table-order td.td-product-name input {
+	width: 190px;
+}
+
+table#table-order td.td-product-count {
+	width: 2%;
+	text-align: center;
+}
+
+table#table-order td.td-product-count input {
+	width: 50px;
+}
+
+table#table-order td.td-product-unit {
+	width: 2%;
+	text-align: center;
+}
+
+table#table-order td.td-product-unit select {
+	width: 85px;
+	background: #e8e8e8;
+	padding: 5px;
+	border: none;
+	font-family: "Graublau Web";
+	font-size: 12px;
+	letter-spacing: .2em;
+}
+
+table#table-order td.td-product-type {
+	width: 2%;
+	text-align: center;
+}
+
+table#table-order td.td-product-type select {
+	width: 85px;
+	background: #e8e8e8;
+	padding: 5px;
+	border: none;
+	font-family: "Graublau Web";
+	font-size: 12px;
+	letter-spacing: .2em;
+}
+
+table#table-order td.td-product-price {
+	width: 2%;
+	text-align: center;
+}
+
+table#table-order td.td-product-price input {
+	width: 90px;
+}
+
+table#table-order td.td-product-total {
+	width: 2%;
+	text-align: center;
+}
+
+table#table-order td.td-product-total input {
+	width: 90px;
+}
+
+div.button-wrapper {
+	position: relative;
+	top: -35px;	
+	overflow: hidden;
+	width: 300px;
+}
+
+input#save-order {
+	width: 92px;
+	height: 22px;
+	margin-top: 20px;
+	text-indent: -9999px;
+	overflow: hidden;
+	background: url(../image/save-order.png) no-repeat;
+	border: none;	
+	cursor: pointer;
+}
+
+input#add-order {
+	width: 92px;
+	height: 22px;
+	margin-top: 20px;
+	text-indent: -9999px;
+	overflow: hidden;
+	background: url(../image/add-more.png) no-repeat;
+	border: none;	
+	cursor: pointer;
+}
+
+input#add-more-order {
+	width: 60px;
+	height: 17px;
+	background: #e8e8e8;
+	border: none;	
+	padding: 5px;
+	font-family: "Graublau Web";
+	font-size: 14px;
+	letter-spacing: .2em;
+	margin-left: 5px;
+}
+
+div#total {
+	float: right;	
+	position: relative;
+	right: -5px
+}
+
+div#total input#total-order {
+	width: 103px;
+	height: 17px;
+	background: #e8e8e8;
+	border: none;	
+	padding: 5px;
+	font-family: "Graublau Web";
+	font-size: 14px;
+	letter-spacing: .2em;
+}
+
+div#total label {
+	font-family: ChunkFive;
+	font-size: 14px;
+	color: #7db4b5;
+}
+
+/* end table order styles */
+
+/* END CONTENT STYLES */
+
+
+
+/* FOOTER STYLES */
+
+
+div#footer {
+	width: 925px;
+	margin-top: 20px;
+}
+
+div#footer p {
+	text-align: center;	
+}
+
+/* END FOOTER STYLES */
+
+
+/* FORM ERROR STYLES */
+
+.input-error {
+	outline: 1px solid #000;	
+}
+
+div.form-error {
+	position: relative;
+	left: 182px;	
+	margin-top: 5px;
+}
+
+div.form-error p {
+	font-family: "Graublau Web";
+	font-size: 12px;
+	color: #a3abaf;
+}
+
+
+/* END FORM ERROR STYLES */
+
+
