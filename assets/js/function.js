@@ -63,6 +63,8 @@ $(document).ready(
 				
 				var z = 0;
 				
+				var total_order = [];
+				
 				while(z < arr.length)
 				{
 					var nam = "product-total-" + z;
@@ -70,9 +72,13 @@ $(document).ready(
 					var nam_price = "product-price-" + z;
 					var qty = $("input[name^=" + nam_qty + "]").val();
 					var price = $("input[name^=" + nam_price + "]").val();
+					//calculate per product total price
 					var total = qty * price;
+					// collect the total price, and send them to total_order array
+					total_order.push(total);
 					$("input[name^=" + nam + "]").val(total);
-					//alert(arr);
+					// calculate the element of the total_order array, and assign them to total order input text
+					$("input[name^=total-order]").val(eval(total_order.join('+')));
 					z++;
 				}
 						
