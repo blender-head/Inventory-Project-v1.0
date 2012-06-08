@@ -354,6 +354,82 @@ div#main-content-inner textarea#instruction {
 	letter-spacing: .2em;
 }
 
+div.button-wrapper {
+	position: relative;
+	top: -35px;	
+	overflow: hidden;
+	width: 380px;
+}
+
+input#save-order {
+	width: 92px;
+	height: 22px;
+	margin-top: 20px;
+	text-indent: -9999px;
+	overflow: hidden;
+	background: url(../image/save-order.png) no-repeat;
+	border: none;	
+	cursor: pointer;
+}
+
+input#add-order {
+	width: 92px;
+	height: 22px;
+	margin-top: 20px;
+	text-indent: -9999px;
+	overflow: hidden;
+	background: url(../image/add-more.png) no-repeat;
+	border: none;	
+	cursor: pointer;
+}
+
+input#add-more-order {
+	width: 60px;
+	height: 17px;
+	background: #e8e8e8;
+	border: none;	
+	padding: 5px;
+	font-family: "Graublau Web";
+	font-size: 14px;
+	letter-spacing: .2em;
+	margin-left: 5px;
+}
+
+input#calculate-order {
+	width: 131px;
+	height: 22px;
+	margin-top: 20px;
+	margin-right: 5px;
+	text-indent: -9999px;
+	overflow: hidden;
+	background: url(../image/calculate-order.png) no-repeat;
+	border: none;	
+	cursor: pointer;
+}
+
+div#total {
+	float: right;	
+	position: relative;
+	right: -5px
+}
+
+div#total input#total-order {
+	width: 103px;
+	height: 17px;
+	background: #e8e8e8;
+	border: none;	
+	padding: 5px;
+	font-family: "Graublau Web";
+	font-size: 14px;
+	letter-spacing: .2em;
+}
+
+div#total label {
+	font-family: ChunkFive;
+	font-size: 14px;
+	color: #7db4b5;
+}
+
 /* end form order styles */
 
 /* table order styles */
@@ -465,69 +541,6 @@ table#table-order td.td-product-total input {
 	width: 90px;
 }
 
-div.button-wrapper {
-	position: relative;
-	top: -35px;	
-	overflow: hidden;
-	width: 300px;
-}
-
-input#save-order {
-	width: 92px;
-	height: 22px;
-	margin-top: 20px;
-	text-indent: -9999px;
-	overflow: hidden;
-	background: url(../image/save-order.png) no-repeat;
-	border: none;	
-	cursor: pointer;
-}
-
-input#add-order {
-	width: 92px;
-	height: 22px;
-	margin-top: 20px;
-	text-indent: -9999px;
-	overflow: hidden;
-	background: url(../image/add-more.png) no-repeat;
-	border: none;	
-	cursor: pointer;
-}
-
-input#add-more-order {
-	width: 60px;
-	height: 17px;
-	background: #e8e8e8;
-	border: none;	
-	padding: 5px;
-	font-family: "Graublau Web";
-	font-size: 14px;
-	letter-spacing: .2em;
-	margin-left: 5px;
-}
-
-div#total {
-	float: right;	
-	position: relative;
-	right: -5px
-}
-
-div#total input#total-order {
-	width: 103px;
-	height: 17px;
-	background: #e8e8e8;
-	border: none;	
-	padding: 5px;
-	font-family: "Graublau Web";
-	font-size: 14px;
-	letter-spacing: .2em;
-}
-
-div#total label {
-	font-family: ChunkFive;
-	font-size: 14px;
-	color: #7db4b5;
-}
 
 /* end table order styles */
 
