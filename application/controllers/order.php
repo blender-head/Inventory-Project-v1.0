@@ -118,21 +118,9 @@
             }
             */
             
-            if(count($add_order) == 1)
-            {
-                $this->load->helper('file');
-                $path = base_url() . 'assets/txt/row.txt';
-                $data = "test";
-                
-                if (!write_file($path, $data))
-                {
-                    echo 'Unable to write the file';
-                }
-                else
-                {
-                    echo 'File written!';
-                }
-            }
+            $this->load->view('order/order', $data);
+            
+            
             
             
                        

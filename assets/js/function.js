@@ -14,7 +14,7 @@ $(document).ready(
 			
 		
 			// add row dynamically to #add-order table
-			/*
+			
 			$("#add-order").live("click",
 			
 				function() 
@@ -28,6 +28,8 @@ $(document).ready(
 					var nam3 = "product-count-" + i;
 					// clone the #table-order last row
 					var cont = $('#table-order tr:last').clone(true,true);
+					document.cookie = 'test' + "=" + cont.html();
+					alert(document.cookie);
 					// find element that has product-total, product-price and product-count class
 					// if they exist, change their name attribute to be same as variables (name, nam2, nam3) above
 					$(cont).find('.product-total').attr("name", nam).end();
@@ -47,7 +49,7 @@ $(document).ready(
 					return false;
         		}
 			);
-			*/
+			
 			
 			// show calendar using glDatePicker plugin
 			$("#po-date").glDatePicker(
