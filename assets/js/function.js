@@ -50,7 +50,7 @@ $(document).ready(
 			});
 			
 			//if the save-irder button is clicked
-			$("#save-order").click(function(){
+			$("#calculate-order").click(function(){
 					
 				// create an array variable to hold the values of product-count input element							
 				var arr = [];						
