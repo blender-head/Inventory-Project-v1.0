@@ -64,6 +64,33 @@
                 $data['product_type'] = $query_prod_type;
             }
             
+            // set form validation rule
+            $this->form_validation->set_rules('po-number', 'PO Number', 'required|is_unique[order_meta_data.po_number]|numeric');
+            $this->form_validation->set_rules('po-date', 'PO Date', 'required');
+            $this->form_validation->set_rules('supplier', 'Supplier', 'required');
+            $this->form_validation->set_rules('key-person', 'Key Person', 'required');
+            $this->form_validation->set_rules('product-code', 'Product Code', 'required|numeric');
+            $this->form_validation->set_rules('product-name', 'Product Name', 'required');
+            $this->form_validation->set_rules('product-count', 'Quantity', 'required|numeric');
+            $this->form_validation->set_rules('product-price', 'Product Price', 'required|numeric');
+            
+            
+            if($this->form_validation->run() == FALSE)
+            {
+                // load the order_form.php view
+                $this->load->view('order/order', $data);
+            }
+            else
+            {
+   
+                $status = 'Order Sent';
+                if($save_order)
+                {
+                    $save_meta_data = $this->order_meta_data_model->save_meta_data($po_number, $po_date, $supplier, $key_person, $address, $instruction, $total_order, $status);
+                    //$save_data = $this->order_data_model->save_data($po_number, $po_date, $product_code, $product_number, $product_name, $product_count, $unit_type, $buy_price, $product_total);
+                }
+               
+            }
                        
             $this->load->view('order/order', $data);
             
