@@ -4,25 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
 <script type="text/javascript" src="<?php echo js_asset_url('jquery-1.7.2.min.js', ''); ?>"></script>
-<script>
-
-	$(document).ready(
-	
-		function() 
-		{
-			$.get('http://localhost/alkes/index.php/order/index', function(data) {
-  				alert(data);
-  				
-			});
-		}
-	
-	
-	);
-
-</script>
 </head>
 
 <body>
-<p class="result"></p>
+
+<?php echo form_open('test/index') ?>
+
+<label for="test">Test</label>
+<input type="text" name="test" />
+<input type="submit" name="add" value="add" />
+
+<?php echo form_close() ?>
 </body>
 </html>

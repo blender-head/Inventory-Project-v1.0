@@ -14,10 +14,12 @@ $(document).ready(
 			
 		
 			// add row dynamically to #add-order table
-			$("#add-order").click(
+			/*
+			$("#add-order").live("click",
 			
 				function() 
 				{
+					
 					// set i to foo return value
 					var i = foo();
 					//set variable to apply to name attributes
@@ -25,7 +27,7 @@ $(document).ready(
 					var nam2 = "product-price-" + i;
 					var nam3 = "product-count-" + i;
 					// clone the #table-order last row
-					var cont = $('#table-order tr:last').clone();
+					var cont = $('#table-order tr:last').clone(true,true);
 					// find element that has product-total, product-price and product-count class
 					// if they exist, change their name attribute to be same as variables (name, nam2, nam3) above
 					$(cont).find('.product-total').attr("name", nam).end();
@@ -34,13 +36,18 @@ $(document).ready(
 					// insert the cloned element to the #table-order last position
 					$(cont).insertAfter('#table-order tr:last');
 					// reset the values of the cloned element
+					$('#table-order tr:last .product-code').val('');
+					$('#table-order tr:last .product-name').val('');
 					$('#table-order tr:last .product-count').val('');
 					$('#table-order tr:last .product-price').val('');
 					$('#table-order tr:last .product-total').val('');
 					
+					
+
 					return false;
         		}
 			);
+			*/
 			
 			// show calendar using glDatePicker plugin
 			$("#po-date").glDatePicker(

@@ -12,7 +12,7 @@
             
             	<div id="main-content-inner"><!--main-content-inner-->
                 
-                	<?php echo form_open('test/index') ?>
+                	<?php echo form_open('order/index') ?>
                     	
                         <div class="form-item">
                         	<label for="po-number">PO Number :</label>
@@ -67,9 +67,9 @@
                             
                             <?php for($i=0;$i<1;$i++) { ?>
                             <tr>
-                            	<td class="td-product-code"><input type="text" name="product-code[]" class="product-code" /></td>
-                                <td class="td-product-name"><input type="text" name="product-name[]" class="product-name" /></td>
-                                <td class="td-product-count"><input type="text" name="product-count-<?php echo $i ?>" class="product-count" /></td>
+                            	<td class="td-product-code"><input type="text" name="product-code[]" class="product-code <?php if (form_error("product-code[]")) { echo 'input-error'; } ?>" /></td>
+                                <td class="td-product-name"><input type="text" name="product-name[]" class="product-name <?php if (form_error("product-code[]")) { echo 'input-error'; } ?>" /></td>
+                                <td class="td-product-count"><input type="text" name="product-count-<?php echo $i ?>" class="product-count <?php if (form_error("product-count-$i")) { echo 'input-error'; } ?>" /></td>
                                 <td class="td-product-unit">
                                 	<select type="text" name="product-unit[]" class="product-unit" />
                                     	<?php foreach($unit_type as $data_unit_type) : ?>
@@ -84,8 +84,8 @@
                                         <?php endforeach ?>
 									</select>                                
                                 </td>
-                                <td class="td-product-price"><input type="text" name="product-price-<?php echo $i ?>" class="product-price" /></td>
-								<td class="td-product-total"><input type="text" name="product-total-<?php echo $i ?>" class="product-total" /></td>
+                                <td class="td-product-price"><input type="text" name="product-price-<?php echo $i ?>" class="product-price <?php if (form_error("product-price-$i")) { echo 'input-error'; } ?>" /></td>
+								<td class="td-product-total"><input type="text" name="product-total-<?php echo $i ?>" class="product-total <?php if (form_error("product-total-$i")) { echo 'input-error'; } ?>" /></td>
                                 
 
                             </tr>
@@ -96,7 +96,7 @@
                         
                         <div id="total"><!--total-->
                         	<label for="total-order" id="total-order-label">Total :</label>
-                        	<input type="text" name="total-order" id="total-order" />
+                        	<input type="text" name="total-order" id="total-order" <?php if (form_error("total-order")) { echo 'class="input-error"'; } ?>/>
                         </div><!--/total-->
                         
                         <div class="clear"></div>

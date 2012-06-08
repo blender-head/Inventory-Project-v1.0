@@ -26,15 +26,21 @@
             $instruction = $this->input->post('instruction');
             $product_code = $this->input->post('product-code');
             $product_name = $this->input->post('product-name');
-            $product_count = $this->input->post('product-count');
             $unit_type = $this->input->post('product-unit');
-            $buy_price = $this->input->post('product-price');
-            $product_total = $this->input->post('product-total');
+            //$buy_price = $this->input->post('product-price');
+            //$product_total = $this->input->post('product-total');
             $total_order = $this->input->post('total-order');
             $save_order = $this->input->post('save-order');
             $add_order = $this->input->post('add-order');
             $calculate_order = $this->input->post('calculate-order');
             
+            
+            for($i=0;$i<count($product_code);$i++)
+            {
+                $product_count[] = $this->input->post("product-count-$i");
+                $buy_price[] = $this->input->post("product-price-$i");
+                $product_total[] = $this->input->post("product-total-$i");
+            }
             
             // get data from unit_type table
             // we need the data to populate unit type select list
@@ -65,16 +71,25 @@
             }
             
             // set form validation rule
-            $this->form_validation->set_rules('po-number', 'PO Number', 'required|is_unique[order_meta_data.po_number]|numeric');
-            $this->form_validation->set_rules('po-date', 'PO Date', 'required');
-            $this->form_validation->set_rules('supplier', 'Supplier', 'required');
-            $this->form_validation->set_rules('key-person', 'Key Person', 'required');
-            $this->form_validation->set_rules('product-code', 'Product Code', 'required|numeric');
-            $this->form_validation->set_rules('product-name', 'Product Name', 'required');
-            $this->form_validation->set_rules('product-count', 'Quantity', 'required|numeric');
-            $this->form_validation->set_rules('product-price', 'Product Price', 'required|numeric');
+            //$this->form_validation->set_rules('po-number', 'PO Number', 'required|is_unique[order_meta_data.po_number]|numeric');
+            //$this->form_validation->set_rules('po-date', 'PO Date', 'required');
+            //$this->form_validation->set_rules('supplier', 'Supplier', 'required');
+            //$this->form_validation->set_rules('key-person', 'Key Person', 'required');
+            //$this->form_validation->set_rules('product-code[]', 'Product Code', 'required|numeric');
+            //$this->form_validation->set_rules('product-name[]', 'Product Name', 'required');
             
+            /*
+            for($i=0;$i<count($product_code);$i++)
+            {
+                $this->form_validation->set_rules("product-count-$i", 'Quantity', 'required|numeric');
+                $this->form_validation->set_rules("product-price-$i", 'Product Price', 'required|numeric');
+                $this->form_validation->set_rules("product-total-$i", 'Product Total', 'required|numeric');
+            }
+            */
             
+            //$this->form_validation->set_rules('total-order', 'Total Order', 'required|numeric');
+            
+            /*
             if($this->form_validation->run() == FALSE)
             {
                 // load the order_form.php view
@@ -84,17 +99,43 @@
             {
    
                 $status = 'Order Sent';
-                if($save_order)
+                
+                if($save_order == "Save Order")
                 {
-                    $save_meta_data = $this->order_meta_data_model->save_meta_data($po_number, $po_date, $supplier, $key_person, $address, $instruction, $total_order, $status);
-                    //$save_data = $this->order_data_model->save_data($po_number, $po_date, $product_code, $product_number, $product_name, $product_count, $unit_type, $buy_price, $product_total);
+                    //$save_meta_data = $this->order_meta_data_model->save_meta_data($po_number, $po_date, $supplier, $key_person, $address, $instruction, $total_order, $status);
+                    $save_data = $this->order_data_model->save_data($po_number, $po_date, $product_code, $product_number, $product_name, $product_count, $unit_type, $buy_price, $product_total);
+                }
+                
+                if($save_meta_data && $save_data)
+                {
+                    echo 'success';
+                }
+                else
+                {
+                    echo 'falied';
                 }
                
             }
+            */
+            
+            if(count($add_order) == 1)
+            {
+                $this->load->helper('file');
+                $path = base_url() . 'assets/txt/row.txt';
+                $data = "test";
+                
+                if (!write_file($path, $data))
+                {
+                    echo 'Unable to write the file';
+                }
+                else
+                {
+                    echo 'File written!';
+                }
+            }
+            
+            
                        
-            $this->load->view('order/order', $data);
-            
-            
         }
         // end index() method
         
