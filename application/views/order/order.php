@@ -102,6 +102,7 @@
                         <div class="clear"></div>
                         
                         <div class="button-wrapper"><!--button-wrapper-->
+                        	<input type="button" name="calculate-order" value="Calculate Order" id="calculate-order" />
                         	<input type="submit" name="save-order" value="Save Order" id="save-order" /> 
                         	<span>or</span> 
                         	<input type="submit" name="add-order" value="Add More" id="add-order" />
