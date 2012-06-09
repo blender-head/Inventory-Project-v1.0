@@ -27,13 +27,11 @@
             $product_code = $this->input->post('product-code');
             $product_name = $this->input->post('product-name');
             $unit_type = $this->input->post('product-unit');
-            //$buy_price = $this->input->post('product-price');
-            //$product_total = $this->input->post('product-total');
             $total_order = $this->input->post('total-order');
             $save_order = $this->input->post('save-order');
             $add_order = $this->input->post('add-order');
             $calculate_order = $this->input->post('calculate-order');
-            
+            $add_count = $this->input->post('add-count');
             
             for($i=0;$i<count($product_code);$i++)
             {
@@ -46,14 +44,12 @@
             // we need the data to populate unit type select list
             $query_unit_type = $this->unit_type_model->get_all_data();
             
-            
-            
+                        
             // get data from product_type table
             // we need the data to populate product type select list
             $query_prod_type = $this->product_type_model->get_all_data();
             
-            
-            
+                       
             //if the query_unit_type returns a result
             if(sizeof($query_unit_type) > 0)
             {
@@ -61,8 +57,7 @@
                 $data['unit_type'] = $query_unit_type;
             }
             
-            
-            
+                       
             //if the query_prod_type returns a result
             if(sizeof($query_unit_type) > 0)
             {
@@ -118,8 +113,19 @@
             }
             */
             
-            $this->load->view('order/order', $data);
             
+            $count = $this->input->post('add-count');
+            
+            if($save_order)
+            {
+                
+               $test = explode(",",$add_count);
+               print_r($test);
+                
+                
+            }
+            
+            $this->load->view('order/order', $data);
             
             
             

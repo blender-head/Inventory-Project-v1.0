@@ -12,12 +12,12 @@
             
             	<div id="main-content-inner"><!--main-content-inner-->
                 
-                	<?php echo form_open('order/index') ?>
+                	<form>
                     	
                         <div class="form-item">
                         	<label for="po-number">PO Number :</label>
-                            <input type="text" name="po-number" id="po-number" <?php if (form_error('po-number')) { echo 'class="input-error"'; } ?> value="<?php echo set_value('po-number'); ?>"/>  
-                            <div class="form-error"><?php echo form_error('po-number') ?></div>                
+                            <input type="text" name="po-number" id="po-number" />  
+                            <div class="form-error"><p>PO Number already existed</p></div>                
                         </div>
                         
                         <div class="form-item">
@@ -89,6 +89,9 @@
                                 
 
                             </tr>
+                            
+                             
+                            
                             <?php } ?>
                  
                             
@@ -103,14 +106,15 @@
                         
                         <div class="button-wrapper"><!--button-wrapper-->
                         	<input type="button" name="calculate-order" value="Calculate Order" id="calculate-order" />
-                        	<input type="submit" name="save-order" value="Save Order" id="save-order" /> 
+                        	<input type="button" name="save-order" value="Save Order" id="save-order" /> 
                         	<span>or</span> 
-                        	<input type="submit" name="add-order" value="Add More" id="add-order" />
+                        	<input type="button" name="add-order" value="Add More" id="add-order" />
+                            <input type="hidden" name="add-count" />
                         </div><!--/button-wrapper-->
                         
                         
                         
-                    <?php echo form_close() ?><!--/form-->
+                    </form><!--/form-->
                 
                 </div><!--/main-content-inner-->
             

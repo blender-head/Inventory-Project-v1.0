@@ -12,7 +12,6 @@ $(document).ready(
     			return foo.counter;
 			}
 			
-		
 			// add row dynamically to #add-order table
 			
 			$("#add-order").live("click",
@@ -68,6 +67,10 @@ $(document).ready(
 				
 				});
 				
+				alert(arr);
+				var test = $("input[name^=add-count]").val(arr);
+				alert($("input[name^=add-count]").val());
+				
 				var z = 0;
 				
 				var total_order = [];
@@ -92,6 +95,32 @@ $(document).ready(
 				return false;
 				
 	        });
+			
+			$('#save-order').click(function() {
+			
+				var po_numbers = $('#po-number').val();
+				
+				
+				var postdata = {'po_number':po_numbers};
+				
+				$.ajax({
+     				type: "POST",
+     				url: "http://localhost/alkes/index.php/order_validation/order_form_validation",
+     				data: postdata , //assign the var here 
+     				success: function(msg){
+        				if(msg == po_numbers)
+						{
+							$('.form-error').css("display","block");
+						}
+						else
+						{
+							$('.form-error').css("display","none");	
+						}
+						
+     				}
+				});	
+				
+			});
 			
 		}
 

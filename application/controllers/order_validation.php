@@ -1,8 +1,9 @@
 <?php
 
-    class Test extends CI_Controller
+    class Order_validation extends CI_Controller
     {
-        public function index()
+        
+        public function order_form_validation()
         {
             $po_number = $this->input->post('po_number');
             
@@ -15,4 +16,5 @@
             
             echo $po_number_res;
         }
+        
     }
