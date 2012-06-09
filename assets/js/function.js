@@ -110,7 +110,12 @@ $(document).ready(
 					url: "http://localhost/alkes/index.php/order/order_form_validation",
      				data: postdata ,
      				success: function(data){
-        				alert(data.success);
+        				
+						if(data.error_po_number)
+						{
+							$('.form-error.po-number-error').html(data.error_po_number).css("display","block");
+						}
+						
      				}
 				});	
 				

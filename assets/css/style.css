@@ -569,7 +569,7 @@ div#footer p {
 	outline: 1px solid #000;	
 }
 
-div.form-error {
+.form-error {
 	position: relative;
 	left: 182px;	
 	margin-top: 5px;

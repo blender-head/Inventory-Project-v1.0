@@ -17,26 +17,26 @@
                         <div class="form-item">
                         	<label for="po-number">PO Number :</label>
                             <input type="text" name="po-number" id="po-number" />  
-                            <div class="form-error"><p>PO Number already existed</p></div>                
+                            <div class="form-error po-number-error"></div>                
                         </div>
                         
                         <div class="form-item">
                         	<label for="po-date">PO Date :</label>
                             <input type="text" name="po-date" id="po-date" /> 
-                            <div class="form-error"><p>PO Number already existed</p></div>   
+                             
                             <div class="clear"></div>              
                         </div>
                         
                         <div class="form-item">
                         	<label for="supplier">Supplier :</label>
                             <input type="text" name="supplier" id="supplier" />     
-                            <div class="form-error"><?php echo form_error('supplier') ?></div>              
+                                          
                         </div>
                         
                         <div class="form-item">
                         	<label for="key-person">Key Person :</label>
-                            <input type="text" name="key-person" id="key-person" <?php if (form_error('key-person')) { echo 'class="input-error"'; } ?> value="<?php echo set_value('key-person'); ?>" />    
-                            <div class="form-error"><?php echo form_error('key-person') ?></div>               
+                            <input type="text" name="key-person" id="key-person" />    
+                                       
                         </div>
                         
                         <div class="form-item">

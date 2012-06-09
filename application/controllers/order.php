@@ -61,7 +61,7 @@
             if($this->form_validation->run('po_number') == FALSE)
             {
                 $po_number_error = form_error('po_number');
-                $data = array('success'=> true,'error'=>$po_number_error);
+                $data = array('error_po_number'=>$po_number_error);
                 echo json_encode($data);
             }
            

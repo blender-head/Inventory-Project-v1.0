@@ -1,138 +1,86 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>INDEX</title>
-<?php $this->load->helper('asset'); ?>
-<?php $this->load->helper('url'); ?>
-<?php echo css_asset('style.css'); ?>
-</head>
-
-<body>
-
-<div id="wrapper">
-
-	<div id="header">
+    <?php $this->load->view('header') ?>
     
-    	<div id="logo">
-   	    	<?php echo image_asset('logo.png', '', array('width'=>258, 'height'=>53, 'alt'=>'logo')); ?>
-        </div>
+    <div id="content"><!--content-->
+    
+    	<div id="content-inner"><!--content-inner-->
         
-    
-    	<div id="menu">
+        	<div class="content-header-wrapper"><!--content-header-wrapper-->
+        		<h1 class="content-header">Order Form</h1>
+            </div><!--/content-header-wrapper-->
+            
+            <div id="main-content"><!--main-content-->
+            
+            	<div id="main-content-inner"><!--main-content-inner-->
+                
+                	<table id="table-order"><!--table-order-->
+                        
+                        	<tr>
+                            	<th>Code</th>
+                                <th>Item Name</th>
+                                <th>Qty</th>
+                                <th>Unit</th>
+                                <th>Type</th>
+                                <th>Buy Price</th>
+                                <th>Total</th>
+                            </tr>
+                            
+                            <?php for($i=0;$i<1;$i++) { ?>
+                            <tr>
+                            	<td class="td-product-code"><input type="text" name="product-code[]" class="product-code <?php if (form_error("product-code[]")) { echo 'input-error'; } ?>" /></td>
+                                <td class="td-product-name"><input type="text" name="product-name[]" class="product-name <?php if (form_error("product-code[]")) { echo 'input-error'; } ?>" /></td>
+                                <td class="td-product-count"><input type="text" name="product-count-<?php echo $i ?>" class="product-count <?php if (form_error("product-count-$i")) { echo 'input-error'; } ?>" /></td>
+                                <td class="td-product-unit">
+                                	<select type="text" name="product-unit[]" class="product-unit" />
+                                    	<?php foreach($unit_type as $data_unit_type) : ?>
+                                    	<option value="<?php echo $data_unit_type->unit_id ?>"><?php echo $data_unit_type->unit_name ?></option>
+                                        <?php endforeach ?>
+									</select>                                
+                                </td>
+                                <td class="td-product-type">
+                                	<select type="text" name="product-type[]" class="product-type" />
+                                    	<?php foreach($product_type as $data_prod_type) : ?>
+                                    	<option value="<?php echo $data_prod_type->product_type_id ?>"><?php echo $data_prod_type->product_type_name ?></option>
+                                        <?php endforeach ?>
+									</select>                                
+                                </td>
+                                <td class="td-product-price"><input type="text" name="product-price-<?php echo $i ?>" class="product-price <?php if (form_error("product-price-$i")) { echo 'input-error'; } ?>" /></td>
+								<td class="td-product-total"><input type="text" name="product-total-<?php echo $i ?>" class="product-total <?php if (form_error("product-total-$i")) { echo 'input-error'; } ?>" /></td>
+                                
+
+                            </tr>
+                            
+                             
+                            
+                            <?php } ?>
+                 
+                            
+                        </table><!--/table-order-->
+                        
+                        <div id="total"><!--total-->
+                        	<label for="total-order" id="total-order-label">Total :</label>
+                        	<input type="text" name="total-order" id="total-order" <?php if (form_error("total-order")) { echo 'class="input-error"'; } ?>/>
+                        </div><!--/total-->
+                        
+                        <div class="clear"></div>
+                        
+                        <div class="button-wrapper"><!--button-wrapper-->
+                        	<input type="button" name="calculate-order" value="Calculate Order" id="calculate-order" />
+                        	<input type="button" name="save-order" value="Save Order" id="save-order" /> 
+                        	<span>or</span> 
+                        	<input type="button" name="add-order" value="Add More" id="add-order" />
+                            <input type="hidden" name="add-count" />
+                        </div><!--/button-wrapper-->
+                        
+                        
+                        
+                    </form><!--/form-->
+                
+                </div><!--/main-content-inner-->
+            
+            </div><!--/main-content-->
         
-        	<ul>
-            	<li><a href="" class="product active">Products</a></li>
-                <li><a href="" class="categories">Categories</a></li>
-                <li><a href="" class="vendors">Vendors</a></li>
-                <li><a href="" class="tools">Tools</a></li>
-                <li><a href="" class="administer">Administer</a></li>
-            </ul>
-        	
-            
-            
-        </div>
-        
-        <div id="search">
-        
-        </div>
+        </div><!--/content-inner-->
     
-    </div>
+    </div><!--/content-->
     
-    <div class="clear"></div>
-    
-    <div id="content-wrapper">
-    
-    	<div id="content">
-        
-        	<div id="info">
-            	
-                <?php 
-					foreach($count as $data_count)
-					{
-						$item = $data_count->count;	
-					}
-					
-                                        $string = "item";
-                                        $strings = "items";
-					echo "<p>Currently, there are " . $item . ($item > 1 ? " items":" item"). " in the database</p>";
-					
-				?>
-                
-            
-            </div>
-            
-            <div id="add-button">
-            	<?php echo anchor("products/add", 'add product'); ?>
-            	<p>Add Product</p>
-            </div>
-            
-         
-            <div id="list">
-            
-				<h1>Products</h1>
-                
-                <div id="pre-table"></div>
-                
-                	<div id="table-wrapper">
-                
-                		<div id="table-content">
-                
-                			<?php 
-                			if(sizeof($records) > 0) 
-								{
-									echo '<table id="table-data">';
-    								echo '<tr>';
-    								echo '<th scope="col">Product Number</th>';
-    								echo '<th scope="col">Product Name</th>';
-									echo '<th scope="col">Vendor</th>';
-									echo '<th scope="col">Category</th>';
-									echo '<th scope="col">Quantity</th>';
-                            		echo '<th scope="col">Operations</th>';
-    								echo '</tr>';
-							
-									foreach($records as $row) 
-									{
-										echo '<tr>';
-    									echo '<td class="prod_num">' . $row->product_number . '</td>';
-    									echo '<td class="prod">' . $row->product_name . '</td>';
-                                                                        echo '<td class="vendor">' . $row->product_vendor . '</td>';
-									echo '<td class="category">' . $row->product_category . '</td>';
-									echo '<td class="qty">' . $row->product_count . '</td>';
-    									echo '<td class="op"><div class="edit">' . anchor("products/edit/$row->product_id", 'edit') . '</div><div class="delete">' . anchor("products/delete/$row->product_id", 'delete'). '</div></td>';
-                            			echo '</tr>';
-									}
-									
-									echo '</table>';
-								}
-								else
-								{
-									echo '<h2 class="empty">There are no records yet</h2>';	
-								}
-					
-					 		?>
-    	                          
-                  		</div>
-
-                
-                	</div>
-                
-                <div id="post-table"></div>
-   
-            
-            </div>
-            
-            
-        
-        </div>
-    
-    
-    </div>
-
-
-
-
-</div>
-
-
-</body>
-</html>
+    <?php $this->load->view('footer') ?>
