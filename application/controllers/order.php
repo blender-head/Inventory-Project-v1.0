@@ -52,19 +52,39 @@
         // function to perform validation against order form
         public function order_form_validation()
         {
+            $orders = array();
             $po_number = $this->input->post('po_number');
             $po_date = $this->input->post('po_date');
+            $count = $this->input->post('count');
+            $length = $this->input->post('length');
             
+            $data = array('count'=>$length);
+            echo json_encode($data);
+            
+            /*
             $this->form_validation->set_rules('po_number', 'PO Number', 'required|numeric|is_unique[order_meta_data.po_number]');
+            $this->form_validation->set_rules('po_date', 'PO Date', 'required');
             
             
-            if($this->form_validation->run('po_number') == FALSE)
+            if($this->form_validation->run('po_number', 'po_date') == FALSE)
             {
                 $po_number_error = form_error('po_number');
                 $data = array('error_po_number'=>$po_number_error);
+                $po_date_error = form_error('po_date');
+                $data = array('error_po_date'=>$po_date_error);
+                echo json_encode($data);
+                
+            }
+            else
+            {
+                array_push($orders,$po_number);
+                $data = array('order_element'=>$orders);
+                array_push($orders,$po_date);
+                $data = array('order_element'=>$orders);
                 echo json_encode($data);
             }
-           
+            */
+                       
         }
         // end order_form_validation() method
      

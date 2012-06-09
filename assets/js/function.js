@@ -21,16 +21,18 @@ $(document).ready(
 					// set i to foo return value
 					var i = foo();
 					//set variable to apply to name attributes
-					var nam = "product-total-" + i;
-					var nam2 = "product-price-" + i;
-					var nam3 = "product-count-" + i;
+					var nam_code = "product-code-" + i;
+					var nam_item = "product-name-" + i;
+					var nam_total = "product-total-" + i;
+					var nam_price = "product-price-" + i;
+					var nam_count = "product-count-" + i;
 					// clone the #table-order last row
 					var cont = $('#table-order tr:last').clone(true,true);
 					// find element that has product-total, product-price and product-count class
 					// if they exist, change their name attribute to be same as variables (name, nam2, nam3) above
-					$(cont).find('.product-total').attr("name", nam).end();
-					$(cont).find('.product-price').attr("name", nam2).end();
-					$(cont).find('.product-count').attr("name", nam3).end();
+					$(cont).find('.product-total').attr("name", nam_total).end();
+					$(cont).find('.product-price').attr("name", nam_price).end();
+					$(cont).find('.product-count').attr("name", nam_count).end();
 					// insert the cloned element to the #table-order last position
 					$(cont).insertAfter('#table-order tr:last');
 					// reset the values of the cloned element
@@ -40,8 +42,30 @@ $(document).ready(
 					$('#table-order tr:last .product-price').val('');
 					$('#table-order tr:last .product-total').val('');
 					
+					var arr = [];						
+					// extract the array
+					$("input[name^=product-code]").each(function () {
+    					var items = $(this).val();
+						arr.push(items);
+					});
 					
-
+					var postdata = {'count':nam_count, 'length':arr.length};
+				
+					$.ajax
+					(
+						{
+     						type: "POST",
+							dataType: "json",
+							url: "http://localhost/alkes/index.php/order/order_form_validation",
+     						data: postdata ,
+     						success: function(data){
+        				
+								alert(data.count);
+						
+     						}
+						}
+					);	
+					
 					return false;
         		}
 			);
@@ -66,10 +90,8 @@ $(document).ready(
 				
 				});
 				
-				alert(arr);
 				var test = $("input[name^=add-count]").val(arr);
-				alert($("input[name^=add-count]").val());
-				
+							
 				var z = 0;
 				
 				var total_order = [];
@@ -88,6 +110,8 @@ $(document).ready(
 					$("input[name^=" + nam + "]").val(total);
 					// calculate the element of the total_order array, and assign them to total order input text
 					$("input[name^=total-order]").val(eval(total_order.join('+')));
+					var total_order = $("input[name^=total-order]").val(eval(total_order.join('+')));
+					var postdata = {'qty':qty};
 					z++;
 				}
 						
@@ -111,10 +135,13 @@ $(document).ready(
      				data: postdata ,
      				success: function(data){
         				
+						/*
 						if(data.error_po_number)
 						{
 							$('.form-error.po-number-error').html(data.error_po_number).css("display","block");
 						}
+						*/
+						alert(data);
 						
      				}
 				});	
