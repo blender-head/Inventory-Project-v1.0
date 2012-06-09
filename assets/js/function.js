@@ -99,24 +99,18 @@ $(document).ready(
 			$('#save-order').click(function() {
 			
 				var po_numbers = $('#po-number').val();
+				var po_date = $('#po-date').val();
 				
 				
-				var postdata = {'po_number':po_numbers};
+				var postdata = {'po_number':po_numbers, 'po_date':po_date};
 				
 				$.ajax({
      				type: "POST",
-     				url: "http://localhost/alkes/index.php/order_validation/order_form_validation",
-     				data: postdata , //assign the var here 
-     				success: function(msg){
-        				if(msg == po_numbers)
-						{
-							$('.form-error').css("display","block");
-						}
-						else
-						{
-							$('.form-error').css("display","none");	
-						}
-						
+					dataType: "json",
+					url: "http://localhost/alkes/index.php/order/order_form_validation",
+     				data: postdata ,
+     				success: function(data){
+        				alert(data.success);
      				}
 				});	
 				

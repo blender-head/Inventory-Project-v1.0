@@ -17,13 +17,13 @@
                         <div class="form-item">
                         	<label for="po-number">PO Number :</label>
                             <input type="text" name="po-number" id="po-number" />  
-                            <div class="form-error"><p>PO Number already existed</p></div>                
+                            <div class="form-error"></div>                
                         </div>
                         
                         <div class="form-item">
                         	<label for="po-date">PO Date :</label>
                             <input type="text" name="po-date" id="po-date" /> 
-                            <div class="form-error"><p>PO Number already existed</p></div>   
+                            <div class="form-error"></div>   
                             <div class="clear"></div>              
                         </div>
                         

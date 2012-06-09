@@ -12,7 +12,7 @@
     {
         /*
          *  index() method
-         *  input orders data to orders and order_status table
+         *  display form to input order data
          */
         public function index()
         {
@@ -42,10 +42,30 @@
                 $data['product_type'] = $query_prod_type;
             }
             
-            $this->load->view('order', $data);
+            $this->load->view('order-form', $data);
             
         }
         // end index() method
         
+        
+        // start order_form_validation()
+        // function to perform validation against order form
+        public function order_form_validation()
+        {
+            $po_number = $this->input->post('po_number');
+            $po_date = $this->input->post('po_date');
+            
+            $this->form_validation->set_rules('po_number', 'PO Number', 'required|numeric|is_unique[order_meta_data.po_number]');
+            
+            
+            if($this->form_validation->run('po_number') == FALSE)
+            {
+                $po_number_error = form_error('po_number');
+                $data = array('success'=> true,'error'=>$po_number_error);
+                echo json_encode($data);
+            }
+           
+        }
+        // end order_form_validation() method
      
     }
