@@ -13,7 +13,6 @@ $(document).ready(
 			}
 			
 			// add row dynamically to #add-order table
-			
 			$("#add-order").live("click",
 			
 				function() 
@@ -55,7 +54,7 @@ $(document).ready(
 				position: "inherit"
 			});
 			
-			//if the save-irder button is clicked
+			//if the calculate-order button is clicked
 			$("#calculate-order").click(function(){
 					
 				// create an array variable to hold the values of product-count input element							
@@ -96,6 +95,7 @@ $(document).ready(
 				
 	        });
 			
+			//if the save-order button is clicked
 			$('#save-order').click(function() {
 			
 				var po_numbers = $('#po-number').val();

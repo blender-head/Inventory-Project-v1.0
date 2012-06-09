@@ -17,29 +17,6 @@
         public function index()
         {
             
-            // get data from order_form.php view
-            $po_number = $this->input->post('po-number');
-            $po_date = $this->input->post('po-date');
-            $supplier = $this->input->post('supplier');
-            $key_person = $this->input->post('key-person');
-            $address = $this->input->post('address');
-            $instruction = $this->input->post('instruction');
-            $product_code = $this->input->post('product-code');
-            $product_name = $this->input->post('product-name');
-            $unit_type = $this->input->post('product-unit');
-            $total_order = $this->input->post('total-order');
-            $save_order = $this->input->post('save-order');
-            $add_order = $this->input->post('add-order');
-            $calculate_order = $this->input->post('calculate-order');
-            $add_count = $this->input->post('add-count');
-            
-            for($i=0;$i<count($product_code);$i++)
-            {
-                $product_count[] = $this->input->post("product-count-$i");
-                $buy_price[] = $this->input->post("product-price-$i");
-                $product_total[] = $this->input->post("product-total-$i");
-            }
-            
             // get data from unit_type table
             // we need the data to populate unit type select list
             $query_unit_type = $this->unit_type_model->get_all_data();
@@ -65,71 +42,8 @@
                 $data['product_type'] = $query_prod_type;
             }
             
-            // set form validation rule
-            //$this->form_validation->set_rules('po-number', 'PO Number', 'required|is_unique[order_meta_data.po_number]|numeric');
-            //$this->form_validation->set_rules('po-date', 'PO Date', 'required');
-            //$this->form_validation->set_rules('supplier', 'Supplier', 'required');
-            //$this->form_validation->set_rules('key-person', 'Key Person', 'required');
-            //$this->form_validation->set_rules('product-code[]', 'Product Code', 'required|numeric');
-            //$this->form_validation->set_rules('product-name[]', 'Product Name', 'required');
+            $this->load->view('order', $data);
             
-            /*
-            for($i=0;$i<count($product_code);$i++)
-            {
-                $this->form_validation->set_rules("product-count-$i", 'Quantity', 'required|numeric');
-                $this->form_validation->set_rules("product-price-$i", 'Product Price', 'required|numeric');
-                $this->form_validation->set_rules("product-total-$i", 'Product Total', 'required|numeric');
-            }
-            */
-            
-            //$this->form_validation->set_rules('total-order', 'Total Order', 'required|numeric');
-            
-            /*
-            if($this->form_validation->run() == FALSE)
-            {
-                // load the order_form.php view
-                $this->load->view('order/order', $data);
-            }
-            else
-            {
-   
-                $status = 'Order Sent';
-                
-                if($save_order == "Save Order")
-                {
-                    //$save_meta_data = $this->order_meta_data_model->save_meta_data($po_number, $po_date, $supplier, $key_person, $address, $instruction, $total_order, $status);
-                    $save_data = $this->order_data_model->save_data($po_number, $po_date, $product_code, $product_number, $product_name, $product_count, $unit_type, $buy_price, $product_total);
-                }
-                
-                if($save_meta_data && $save_data)
-                {
-                    echo 'success';
-                }
-                else
-                {
-                    echo 'falied';
-                }
-               
-            }
-            */
-            
-            
-            $count = $this->input->post('add-count');
-            
-            if($save_order)
-            {
-                
-               $test = explode(",",$add_count);
-               print_r($test);
-                
-                
-            }
-            
-            $this->load->view('order/order', $data);
-            
-            
-            
-                       
         }
         // end index() method
         

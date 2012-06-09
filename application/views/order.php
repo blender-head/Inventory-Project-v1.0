@@ -22,14 +22,14 @@
                         
                         <div class="form-item">
                         	<label for="po-date">PO Date :</label>
-                            <input type="text" name="po-date" id="po-date" <?php if (form_error('po-date')) { echo 'class="input-error"'; } ?> value="<?php echo set_value('po-date'); ?>"/> 
-                            <div class="form-error"><?php echo form_error('po-date') ?></div>   
+                            <input type="text" name="po-date" id="po-date" /> 
+                            <div class="form-error"><p>PO Number already existed</p></div>   
                             <div class="clear"></div>              
                         </div>
                         
                         <div class="form-item">
                         	<label for="supplier">Supplier :</label>
-                            <input type="text" name="supplier" id="supplier" <?php if (form_error('supplier')) { echo 'class="input-error"'; } ?> value="<?php echo set_value('supplier'); ?>"/>     
+                            <input type="text" name="supplier" id="supplier" />     
                             <div class="form-error"><?php echo form_error('supplier') ?></div>              
                         </div>
                         
