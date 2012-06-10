@@ -55,33 +55,50 @@
             $orders = array();
             $po_number = $this->input->post('po_number');
             $po_date = $this->input->post('po_date');
-            $count = $this->input->post('count');
-            $length = $this->input->post('length');
+            $product_count_first = $this->input->post('product_count_first');
+            $product_count = $this->input->post('qty');
+            $num_count = $this->input->post('nam_count');
             
-            $data = array('count'=>$length);
-            echo json_encode($data);
+            $data = array('product_count'=>$product_count);
+            echo json_encode($data);          
+            
+            //$this->form_validation->set_rules('product_count_first', 'Quantity', 'required');
+            //$this->form_validation->set_rules('qty', 'Quantity', 'required');
+               
+            /*
+            if($this->form_validation->run('product_count_first') == FALSE)
+            {
+                $product_count_first_error = form_error('product_count_first');
+                //$product_count_error = form_error('qty');
+                $data = array('product_count_first_error'=>$product_count_first_error);
+                echo json_encode($data);
+            }
+            */
             
             /*
             $this->form_validation->set_rules('po_number', 'PO Number', 'required|numeric|is_unique[order_meta_data.po_number]');
             $this->form_validation->set_rules('po_date', 'PO Date', 'required');
+            */
             
-            
-            if($this->form_validation->run('po_number', 'po_date') == FALSE)
+            /*
+            if($this->form_validation->run() == FALSE)
             {
-                $po_number_error = form_error('po_number');
-                $data = array('error_po_number'=>$po_number_error);
-                $po_date_error = form_error('po_date');
-                $data = array('error_po_date'=>$po_date_error);
+                //$product_count_error = form_error('product-');
+                //$data = array('error_product_count'=>$po_count_error);
+                //$po_number_error = form_error('po_number');
+                //$data = array('error_po_number'=>$po_number_error);
+                //$po_date_error = form_error('po_date');
+                //$data = array('error_po_date'=>$po_date_error);
                 echo json_encode($data);
                 
             }
             else
             {
-                array_push($orders,$po_number);
-                $data = array('order_element'=>$orders);
-                array_push($orders,$po_date);
-                $data = array('order_element'=>$orders);
-                echo json_encode($data);
+                //array_push($orders,$po_number);
+                //$data = array('order_element'=>$orders);
+                //array_push($orders,$po_date);
+                //$data = array('order_element'=>$orders);
+                //echo json_encode($data);
             }
             */
                        

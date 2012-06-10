@@ -4,13 +4,22 @@ $(document).ready(
 		function() {
 			
 			// function to generate static counter
-			function foo() {
-				if( typeof foo.counter == 'undefined' ) {
-        			foo.counter = 0;
+			function staticCounter() {
+				if( typeof staticCounter.counter == 'undefined' ) {
+        			staticCounter.counter = 0;
     			}
-    			foo.counter++;
-    			return foo.counter;
+    			staticCounter.counter++;
+    			return staticCounter.counter;
 			}
+			
+			function staticCounterSave() {
+				if( typeof staticCounterSave.counter == 'undefined' ) {
+        			staticCounterSave.counter = -1;
+    			}
+    			staticCounterSave.counter++;
+    			return staticCounterSave.counter;
+			}
+			
 			
 			// add row dynamically to #add-order table
 			$("#add-order").live("click",
@@ -19,7 +28,7 @@ $(document).ready(
 				{
 					
 					// set i to foo return value
-					var i = foo();
+					var i = staticCounter();
 					//set variable to apply to name attributes
 					var nam_code = "product-code-" + i;
 					var nam_item = "product-name-" + i;
@@ -32,7 +41,7 @@ $(document).ready(
 					// if they exist, change their name attribute to be same as variables (name, nam2, nam3) above
 					$(cont).find('.product-total').attr("name", nam_total).end();
 					$(cont).find('.product-price').attr("name", nam_price).end();
-					$(cont).find('.product-count').attr("name", nam_count).end();
+					$(cont).find('.product-count-0').attr("name", nam_count).end();
 					// insert the cloned element to the #table-order last position
 					$(cont).insertAfter('#table-order tr:last');
 					// reset the values of the cloned element
@@ -42,14 +51,10 @@ $(document).ready(
 					$('#table-order tr:last .product-price').val('');
 					$('#table-order tr:last .product-total').val('');
 					
-					var arr = [];						
-					// extract the array
-					$("input[name^=product-code]").each(function () {
-    					var items = $(this).val();
-						arr.push(items);
-					});
+					var qty = $("input[name^=" + nam_count + "]").val();
 					
-					var postdata = {'count':nam_count, 'length':arr.length};
+										
+					var postdata = {'qty':nam_code};
 				
 					$.ajax
 					(
@@ -57,14 +62,10 @@ $(document).ready(
      						type: "POST",
 							dataType: "json",
 							url: "http://localhost/alkes/index.php/order/order_form_validation",
-     						data: postdata ,
-     						success: function(data){
-        				
-								alert(data.count);
-						
-     						}
+     						data: postdata
 						}
 					);	
+					
 					
 					return false;
         		}
@@ -121,12 +122,13 @@ $(document).ready(
 			
 			//if the save-order button is clicked
 			$('#save-order').click(function() {
-			
+				
+				var product_count_first = $("input[name=product-count-0]").val();
 				var po_numbers = $('#po-number').val();
 				var po_date = $('#po-date').val();
 				
 				
-				var postdata = {'po_number':po_numbers, 'po_date':po_date};
+				var postdata = {'po_number':po_numbers, 'po_date':po_date, 'product_count_first':product_count_first};
 				
 				$.ajax({
      				type: "POST",
@@ -141,10 +143,17 @@ $(document).ready(
 							$('.form-error.po-number-error').html(data.error_po_number).css("display","block");
 						}
 						*/
-						alert(data);
+						
+						
+											
+							alert(data.product_count);
+						
+						
 						
      				}
 				});	
+				
+				return false;
 				
 			});
 			
