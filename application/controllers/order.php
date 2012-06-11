@@ -61,19 +61,21 @@
             $class_name = $this->input->post('class_name');
             $save_status = $this->input->post('save_status');
             $add_order = $this->input->post('add_order');
-            $arr = $this->input->post('arr');
-            
+            $product_code = $this->input->post('product_code');
+            $product_name = $this->input->post('product_name');
+                        
             //$data = array('arr'=>$arr);
             //echo json_encode($data);    
             
             //$this->form_validation->set_rules('product_count_first', 'Quantity', 'required');
-            $this->form_validation->set_rules('arr', 'Quantity', 'required|numeric');
+            $this->form_validation->set_rules('product_code', 'Product Code', 'required|numeric');
+            $this->form_validation->set_rules('product_name', 'Product Name', 'required');
             
-            if($this->form_validation->run('arr') == FALSE)
+            if($this->form_validation->run() == FALSE)
             {
-                $product_count_error = form_error('arr');
-                //$product_count_error = form_error('qty');
-                $data = array('product_count_error'=>$product_count_error);
+                $product_code_error = form_error('product_code');
+                $product_name_error = form_error('product_name');
+                $data = array('product_code_error'=>$product_code_error, 'product_name_error'=>$product_name_error);
                 echo json_encode($data);
             }
             

@@ -21,10 +21,11 @@ $(document).ready(
 			}
 			
 			
+			
 			// add row dynamically to #add-order table
 			$("#add-order").live("click",
 			
-				function() 
+				function test() 
 				{
 					
 					// set i to foo return value
@@ -41,7 +42,9 @@ $(document).ready(
 					// if they exist, change their name attribute to be same as variables (name, nam2, nam3) above
 					$(cont).find('.product-total').attr("name", nam_total).end();
 					$(cont).find('.product-price').attr("name", nam_price).end();
-					$(cont).find('.product-count-0').attr("name", nam_count).end();
+					$(cont).find('.product-count').attr("name", nam_count).end();
+					$(cont).find('.product-code').attr("name", nam_code).end();
+					$(cont).find('.product-name').attr("name", nam_item).end();
 					// insert the cloned element to the #table-order last position
 					$(cont).insertAfter('#table-order tr:last');
 					// reset the values of the cloned element
@@ -51,23 +54,7 @@ $(document).ready(
 					$('#table-order tr:last .product-price').val('');
 					$('#table-order tr:last .product-total').val('');
 					
-					var qty = $("input[name^=" + nam_count + "]").val();
-					var add_order = "TRUE";
-										
-					var postdata = {'qty':qty, 'add_order':add_order, 'nam_count':nam_count};
-				
-					$.ajax
-					(
-						{
-     						type: "POST",
-							dataType: "json",
-							url: "http://localhost/alkes/index.php/order/order_form_validation",
-     						data: postdata
-						}
-					);	
-					
-					
-					return false;
+					return i;
         		}
 			);
 			
@@ -130,29 +117,38 @@ $(document).ready(
 				
 				var arr = [];	
 				
-				$("input[name^=product-count]").each(function () {
+				$("input[name^=product-code]").each(function () {
     				var items = $(this).val();
 					arr.push(items);
 				
 				});
 				
 				var cont = arr.length;
-				i=0;
+				
+								
+				var i = 0;
+				
+				
 				
 				while(i < cont)
 				{
-					var test = 	$("input[name=product-count-" + i + "]").val();
-					i++;
-				}
-
-				var postdata = {'po_number':po_numbers, 'po_date':po_date, 'product_count_first':product_count_first, 'save_status':save_status, 'arr':test};
-				
-				$.ajax({
-     				type: "POST",
-					dataType: "json",
-					url: "http://localhost/alkes/index.php/order/order_form_validation",
-     				data: postdata ,
-     				success: function(data){
+					var product_code = $("input[name^=product-code-" + i + "]").val();
+					var product_name = $("input[name^=product-name-" + i + "]").val();
+					
+					var postdata = {'po_number':po_numbers, 
+									'po_date':po_date, 
+									'product_count_first':product_count_first, 
+									'save_status':save_status, 
+									'product_code':product_code,
+									'product_name':product_name
+									};
+								
+					$.ajax({
+     					type: "POST",
+						dataType: "json",
+						url: "http://localhost/alkes/index.php/order/order_form_validation",
+     					data: postdata ,
+     					success: function(data){
         				
 						/*
 						if(data.error_po_number)
@@ -160,14 +156,23 @@ $(document).ready(
 							$('.form-error.po-number-error').html(data.error_po_number).css("display","block");
 						}
 						*/
-						if(data.product_count_error)
+						
+						
+						if(data.product_code_error)
 						{
-							i = cont;
-							alert(data.product_count_error);
+							alert(data.product_code_error);
 						}
-
-     				}
+						
+						if(data.product_name_error)
+						{
+							alert(data.product_name_error);
+						}
+						
+					}
 				});	
+				
+					i++
+				}
 				
 				return false;
 				
