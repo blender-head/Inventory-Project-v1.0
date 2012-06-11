@@ -71,14 +71,14 @@
                                 <td class="td-product-name"><input type="text" name="product-name-<?php echo $i ?>" class="product-name" /></td>
                                 <td class="td-product-count"><input type="text" name="product-count-<?php echo $i ?>" class="product-count"/></td>
                                 <td class="td-product-unit">
-                                	<select type="text" name="product-unit[]" class="product-unit" />
+                                	<select type="text" name="product-unit-<?php echo $i ?>" class="product-unit" />
                                     	<?php foreach($unit_type as $data_unit_type) : ?>
                                     	<option value="<?php echo $data_unit_type->unit_id ?>"><?php echo $data_unit_type->unit_name ?></option>
                                         <?php endforeach ?>
 									</select>                                
                                 </td>
                                 <td class="td-product-type">
-                                	<select type="text" name="product-type[]" class="product-type" />
+                                	<select type="text" name="product-type-<?php echo $i ?>" class="product-type" />
                                     	<?php foreach($product_type as $data_prod_type) : ?>
                                     	<option value="<?php echo $data_prod_type->product_type_id ?>"><?php echo $data_prod_type->product_type_name ?></option>
                                         <?php endforeach ?>

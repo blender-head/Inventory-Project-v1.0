@@ -99,8 +99,7 @@ $(document).ready(
 					$("input[name^=" + nam + "]").val(total);
 					// calculate the element of the total_order array, and assign them to total order input text
 					$("input[name^=total-order]").val(eval(total_order.join('+')));
-					var total_order = $("input[name^=total-order]").val(eval(total_order.join('+')));
-					var postdata = {'qty':qty};
+					//var total_order = $("input[name^=total-order]").val(eval(total_order.join('+')));
 					z++;
 				}
 						
@@ -112,10 +111,12 @@ $(document).ready(
 			$('#save-order').click(function() {
 				
 				var product_count_first = $("input[name=product-count-0]").val();
-				var po_numbers = $('#po-number').val();
+				var po_number = $('#po-number').val();
 				var po_date = $('#po-date').val();
-				var save_status = "TRUE";
-				
+				var supplier = $('#supplier').val();
+				var key_person = $('#key-person').val();
+				var total_order = $('#total-order').val();
+							
 				var arr = [];	
 				
 				$("input[name^=product-code]").each(function () {
@@ -126,22 +127,26 @@ $(document).ready(
 				
 				var cont = arr.length;
 				
-								
 				var i = 0;
-				
-				
 				
 				while(i < cont)
 				{
 					var product_code = $("input[name^=product-code-" + i + "]").val();
 					var product_name = $("input[name^=product-name-" + i + "]").val();
+					var product_qty = $("input[name^=product-count-" + i + "]").val();
+					var product_unit = $("select[name^=product-unit-" + i + "]").val();
+					var product_type = $("select[name^=product-type-" + i + "]").val();
+					var product_price = $("input[name^=product-price-" + i + "]").val();
 					
-					var postdata = {'po_number':po_numbers, 
+					var postdata = {'po_number':po_number, 
 									'po_date':po_date, 
+									'supplier':supplier,
+									'key_person':key_person,
 									'product_count_first':product_count_first, 
-									'save_status':save_status, 
 									'product_code':product_code,
-									'product_name':product_name
+									'product_name':product_name,
+									'product_qty':product_qty,
+									'product_price':product_price
 									};
 								
 					$.ajax({
@@ -166,14 +171,19 @@ $(document).ready(
 							$("input[name^=product-code-" + i + "]").css("outline","1px solid red");
 						}
 						
-						if(data.product_code_val)
-						{
-							alert(data.product_code_val);
-						}
-						
 						if(data.product_name_error)
 						{
 							alert(data.product_name_error);
+						}
+						
+						if(data.product_qty_error)
+						{
+							alert(data.product_qty_error);
+						}
+						
+						if(data.product_price_error)
+						{
+							alert(data.product_price_error);
 						}
 						
 					}
