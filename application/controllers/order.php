@@ -78,6 +78,11 @@
                 $data = array('product_code_error'=>$product_code_error, 'product_name_error'=>$product_name_error);
                 echo json_encode($data);
             }
+            else
+            {
+                $data = array('product_code_val'=>$product_code . $product_name);
+                echo json_encode($data);
+            }
             
             /*
             if($this->form_validation->run('product_count_first') == FALSE)

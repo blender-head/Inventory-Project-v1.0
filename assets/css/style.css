@@ -582,6 +582,10 @@ div.form-error p {
 	color: #a3abaf;
 }
 
+.error {
+	outline: 1px solid red;	
+}
+
 
 /* END FORM ERROR STYLES */
 

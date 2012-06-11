@@ -49,6 +49,7 @@ $(document).ready(
 					$(cont).insertAfter('#table-order tr:last');
 					// reset the values of the cloned element
 					$('#table-order tr:last .product-code').val('');
+					$('#table-order tr:last .product-code').css("outline","none");
 					$('#table-order tr:last .product-name').val('');
 					$('#table-order tr:last .product-count').val('');
 					$('#table-order tr:last .product-price').val('');
@@ -160,7 +161,14 @@ $(document).ready(
 						
 						if(data.product_code_error)
 						{
-							alert(data.product_code_error);
+							i--;
+							alert(data.product_code_error + i);
+							$("input[name^=product-code-" + i + "]").css("outline","1px solid red");
+						}
+						
+						if(data.product_code_val)
+						{
+							alert(data.product_code_val);
 						}
 						
 						if(data.product_name_error)
