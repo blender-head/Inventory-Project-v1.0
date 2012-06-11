@@ -52,9 +52,9 @@ $(document).ready(
 					$('#table-order tr:last .product-total').val('');
 					
 					var qty = $("input[name^=" + nam_count + "]").val();
-					
+					var add_order = "TRUE";
 										
-					var postdata = {'qty':nam_code};
+					var postdata = {'qty':qty, 'add_order':add_order, 'nam_count':nam_count};
 				
 					$.ajax
 					(
@@ -126,9 +126,26 @@ $(document).ready(
 				var product_count_first = $("input[name=product-count-0]").val();
 				var po_numbers = $('#po-number').val();
 				var po_date = $('#po-date').val();
+				var save_status = "TRUE";
 				
+				var arr = [];	
 				
-				var postdata = {'po_number':po_numbers, 'po_date':po_date, 'product_count_first':product_count_first};
+				$("input[name^=product-count]").each(function () {
+    				var items = $(this).val();
+					arr.push(items);
+				
+				});
+				
+				var cont = arr.length;
+				i=0;
+				
+				while(i < cont)
+				{
+					var test = 	$("input[name=product-count-" + i + "]").val();
+					i++;
+				}
+
+				var postdata = {'po_number':po_numbers, 'po_date':po_date, 'product_count_first':product_count_first, 'save_status':save_status, 'arr':test};
 				
 				$.ajax({
      				type: "POST",
@@ -143,13 +160,12 @@ $(document).ready(
 							$('.form-error.po-number-error').html(data.error_po_number).css("display","block");
 						}
 						*/
-						
-						
-											
-							alert(data.product_count);
-						
-						
-						
+						if(data.product_count_error)
+						{
+							i = cont;
+							alert(data.product_count_error);
+						}
+
      				}
 				});	
 				

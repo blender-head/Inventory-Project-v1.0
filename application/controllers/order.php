@@ -57,14 +57,26 @@
             $po_date = $this->input->post('po_date');
             $product_count_first = $this->input->post('product_count_first');
             $product_count = $this->input->post('qty');
-            $num_count = $this->input->post('nam_count');
+            $nam_count = $this->input->post('nam_count');
+            $class_name = $this->input->post('class_name');
+            $save_status = $this->input->post('save_status');
+            $add_order = $this->input->post('add_order');
+            $arr = $this->input->post('arr');
             
-            $data = array('product_count'=>$product_count);
-            echo json_encode($data);          
+            //$data = array('arr'=>$arr);
+            //echo json_encode($data);    
             
             //$this->form_validation->set_rules('product_count_first', 'Quantity', 'required');
-            //$this->form_validation->set_rules('qty', 'Quantity', 'required');
-               
+            $this->form_validation->set_rules('arr', 'Quantity', 'required|numeric');
+            
+            if($this->form_validation->run('arr') == FALSE)
+            {
+                $product_count_error = form_error('arr');
+                //$product_count_error = form_error('qty');
+                $data = array('product_count_error'=>$product_count_error);
+                echo json_encode($data);
+            }
+            
             /*
             if($this->form_validation->run('product_count_first') == FALSE)
             {

@@ -69,7 +69,7 @@
                             <tr>
                             	<td class="td-product-code"><input type="text" name="product-code-<?php echo $i ?>" class="product-code" /></td>
                                 <td class="td-product-name"><input type="text" name="product-name-<?php echo $i ?>" class="product-name" /></td>
-                                <td class="td-product-count"><input type="text" name="product-count-<?php echo $i ?>" class="product-count product-count-<?php echo $i ?> <?php if (form_error("product-count-$i")) { echo 'form-error'; }?>"/></td>
+                                <td class="td-product-count"><input type="text" name="product-count-<?php echo $i ?>" class="product-count"/></td>
                                 <td class="td-product-unit">
                                 	<select type="text" name="product-unit[]" class="product-unit" />
                                     	<?php foreach($unit_type as $data_unit_type) : ?>
