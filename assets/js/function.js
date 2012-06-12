@@ -259,9 +259,7 @@ $(document).ready(
 			$(".see-details").click(
 				function () 
 				{
-					var i = staticCounter();
-		    		var classname= 'wrapper-' + i;
-		      		$("."+classname).toggle("slow");
+					$(".order-data-wrapper").toggle("slow");
 					return false;
 		    	}
 			

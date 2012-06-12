@@ -12,4 +12,4 @@ Problemo :
 
 #4 Form validation using ajax jquery and codeigniter contrller (solved)
 
-#5 Hide/show divs
+#5 Hide/show divs http://stackoverflow.com/questions/6967081/show-hide-multiple-divs-with-jquery
