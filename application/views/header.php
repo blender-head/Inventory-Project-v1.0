@@ -9,7 +9,6 @@
 <script type="text/javascript" src="<?php echo js_asset_url('jquery-1.7.2.min.js', ''); ?>"></script>
 <script type="text/javascript" src="<?php echo js_asset_url('function.js', ''); ?>"></script>
 <script type="text/javascript" src="<?php echo js_asset_url('glDatePicker.js', ''); ?>"></script>
-<script type="text/javascript" src="<?php echo js_asset_url('jquery.cookie.js', ''); ?>"></script>
 </head>
 
 <body>

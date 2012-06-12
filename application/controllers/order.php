@@ -2,11 +2,15 @@
 
     /*
      *  Order Controller :
+     * 
      *  1. order_form() :  display form to input order datas
      *     view : order-form.php
      * 
      *  2. order_form_validation() : performs order form validation
      *     view : no view
+     * 
+     *  3. order_list() : retrieve and display order data
+     *     view : order-list.php
      *            
      */
     
@@ -76,17 +80,9 @@
             $product_total = $this->input->post('product_total');
             $length = $this->input->post('length');
             
-            
-            //$data = array('product_code'=>$length);
-            //echo json_encode($data);    
-            
-            //$data = array('product_code'=>$product_code);
-            //echo json_encode($data);  
-            
-                      
+                    
             // set rules for form validation :
-            
-            
+                        
             // order meta data validation :
             $this->form_validation->set_rules('po_number', 'PO Number', 'required|numeric|is_unique[order_meta_data.po_number]');
             $this->form_validation->set_rules('po_date', 'PO Date', 'required');
@@ -142,9 +138,7 @@
                 
                 // input order data to order_data table
                 // call order_save_data() method to perform the operation
-                
-                
-                    $insert_data = $this->order_save_data($po_number, $po_date, $product_code, $product_name, $product_qty, $product_unit, $product_type, $product_price, $product_total);
+                $insert_data = $this->order_save_data($po_number, $po_date, $product_code, $product_name, $product_qty, $product_unit, $product_type, $product_price, $product_total);
                
                 
                 // if both operation above are succeeded
@@ -188,33 +182,20 @@
         
         
         // start order_list() method
+        // method to retrieve order data
         public function order_list()
         {
             
+            // get all order_meta_data data using order_meta_data_model
             $get_meta_data = $this->order_meta_data_model->get_all_meta_data();
-            
-                        
-            foreach($get_meta_data as $row)
-            {
-                $po_number[] = $row->po_number;
-            }
-            
-            //print_r($po_number);
-            
-            for($i=0;$i<count($po_number);$i++)
-            {
-                $query_data[] = $this->order_data_model->get_data($po_number[$i]);
-            }
-            
-            //print_r($query_data);
-            
-            //print_r($query_data);
-            
-            if((sizeof($get_meta_data) > 0) && ($query_data > 0))
+             
+            // if the query returns a result
+            // send them to order-list.php view
+            if(sizeof($get_meta_data) > 0)
             {
                 $data['records'] = $get_meta_data;
-                $data['order_data'] = $query_data;
             }
+            // if the table is empty
             else
             {
                 $data['records'] = 0;

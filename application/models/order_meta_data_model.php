@@ -7,6 +7,7 @@
      * 
      *  1. save_meta_data() => method to save order meta data to order_meta_data table
      *  2. get_all_meta_data() => method to get data from order_meta_data table
+     *  3. get_total_order($po_number) => method to retrieve total order, based on po_number
      * 
      */
 
@@ -20,7 +21,7 @@
                                        VALUE ('$po_number', '$po_date', '$supplier', '$key_person', '$address', '$instruction', '$total_order', '$status')");
             return $query;
         }
-        // end save_meta_data method
+        // end save_meta_data() method
         
         
         // method to retrieve data from order_meta_data_table
@@ -29,12 +30,14 @@
            $query = $this->db->query("SELECT DISTINCT * FROM order_meta_data");
            return $query->result();
         }
-        // end get_meta_data method
+        // end get_meta_data() method
         
+        
+        // method to retrieve total order, based on po_number
         public function get_total_order($po_number)
         {
             $query = $this->db->query("SELECT total_order FROM order_meta_data WHERE po_number = '$po_number'");
             return $query->result();
         }
-        
+        // end get_total_order() method
     }

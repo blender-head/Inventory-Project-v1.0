@@ -247,18 +247,26 @@ $(document).ready(
 								window.location = data.location;
 							}
 							*/
-					}
+						}
 					});	
 					i++;
 				}
 					
-					
-				
-
 				return false;
 				
 			});
 			
-		}
-
+			$(".see-details").click(
+				function () 
+				{
+					var i = staticCounter();
+		    		var classname= 'wrapper-' + i;
+		      		$("."+classname).toggle("slow");
+					return false;
+		    	}
+			
+			);
+			
+	}
+		
 );

@@ -11,3 +11,5 @@ Problemo :
 #3 Automatic addition using jquery, from array input (solved, use a calculate button)
 
 #4 Form validation using ajax jquery and codeigniter contrller (solved)
+
+#5 Hide/show divs
