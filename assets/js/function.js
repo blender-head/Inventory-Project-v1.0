@@ -1,3 +1,6 @@
+// all jquery operations goes here...
+
+
 $(document).ready(
 	
 	
@@ -11,15 +14,6 @@ $(document).ready(
     			staticCounter.counter++;
     			return staticCounter.counter;
 			}
-			
-			function staticCounterSave() {
-				if( typeof staticCounterSave.counter == 'undefined' ) {
-        			staticCounterSave.counter = -1;
-    			}
-    			staticCounterSave.counter++;
-    			return staticCounterSave.counter;
-			}
-			
 			
 			
 			// add row dynamically to #add-order table
@@ -67,7 +61,7 @@ $(document).ready(
 				position: "inherit"
 			});
 			
-			//if the calculate-order button is clicked
+			// calculate order automatically
 			$("#calculate-order").click(function(){
 					
 				// create an array variable to hold the values of product-count input element							
@@ -107,7 +101,7 @@ $(document).ready(
 				
 	        });
 			
-			//if the save-order button is clicked
+			// save the order datas
 			$('#save-order').click(function() {
 				
 				// sets values of order meta data
@@ -123,11 +117,16 @@ $(document).ready(
 				// based on row count value	
 				var arr = [];	
 				
-				$("input[name^=product-code]").each(function () {
-    				var items = $(this).val();
-					arr.push(items);
+				$("input[name^=product-code]").each
+				(
 				
-				});
+					function () 
+					{
+    					var items = $(this).val();
+						arr.push(items);
+					}
+					
+				);
 				
 				var cont = arr.length;
 				
@@ -146,7 +145,8 @@ $(document).ready(
 					var product_total = $("input[name^=product-total-" + i + "]").val();
 					
 					// sets ajax post data
-					var postdata = {'po_number':po_number, 
+					var postdata = {
+									'po_number':po_number, 
 									'po_date':po_date, 
 									'supplier':supplier,
 									'key_person':key_person,
