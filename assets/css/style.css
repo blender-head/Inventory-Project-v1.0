@@ -9,6 +9,7 @@
 		* form order styles
 		* common content styles
 		* table order styles
+		* order list styles
 	5. FOOTER STYLES
 	6. FORM ERROR STYLES
 
@@ -220,7 +221,7 @@ div#content-inner div.content-header-wrapper {
 	overflow: hidden;
 }
 
-div#content-inner h1.content-header {
+div#content-inner h1.content-header-order-form {
 	width: 99px;
 	height: 15px;
 	background: url(../image/order-form-header.png) no-repeat;
@@ -229,6 +230,17 @@ div#content-inner h1.content-header {
 	position: relative;
 	top: 9px;
 	left: 20px;
+}
+
+div#content-inner h1.content-header-order-list {
+	width: 87px;
+	height: 15px;
+	background: url(../image/order-list-header.png) no-repeat;
+	text-indent: -9999px;
+	overflow: hidden;
+	position: relative;
+	top: 9px;
+	left: 27px;
 }
 
 div#main-content {
@@ -543,6 +555,13 @@ table#table-order td.td-product-total input {
 
 
 /* end table order styles */
+
+/* order list styles */
+
+
+/* end order list styles */
+
+
 
 /* END CONTENT STYLES */
 

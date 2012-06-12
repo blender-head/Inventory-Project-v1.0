@@ -5,7 +5,7 @@
     	<div id="content-inner"><!--content-inner-->
         
         	<div class="content-header-wrapper"><!--content-header-wrapper-->
-        		<h1 class="content-header">Order Form</h1>
+        		<h1 class="content-header-order-form">Order Form</h1>
             </div><!--/content-header-wrapper-->
             
             <div id="main-content"><!--main-content-->
@@ -23,20 +23,20 @@
                         <div class="form-item">
                         	<label for="po-date">PO Date :</label>
                             <input type="text" name="po-date" id="po-date" /> 
-                             
                             <div class="clear"></div>              
+                            <div class="form-error po-date-error"></div>
                         </div>
                         
                         <div class="form-item">
                         	<label for="supplier">Supplier :</label>
                             <input type="text" name="supplier" id="supplier" />     
-                                          
+                            <div class="form-error supplier-error"></div>              
                         </div>
                         
                         <div class="form-item">
                         	<label for="key-person">Key Person :</label>
                             <input type="text" name="key-person" id="key-person" />    
-                                       
+                            <div class="form-error key-person-error"></div>          
                         </div>
                         
                         <div class="form-item">

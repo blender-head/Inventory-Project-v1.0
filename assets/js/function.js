@@ -110,13 +110,17 @@ $(document).ready(
 			//if the save-order button is clicked
 			$('#save-order').click(function() {
 				
-				var product_count_first = $("input[name=product-count-0]").val();
+				// sets values of order meta data
 				var po_number = $('#po-number').val();
 				var po_date = $('#po-date').val();
 				var supplier = $('#supplier').val();
 				var key_person = $('#key-person').val();
+				var address = $('#address').val();
+				var instruction = $('#instruction').val();
 				var total_order = $('#total-order').val();
-							
+				
+				// sets the value for maximum iterator
+				// based on row count value	
 				var arr = [];	
 				
 				$("input[name^=product-code]").each(function () {
@@ -129,26 +133,36 @@ $(document).ready(
 				
 				var i = 0;
 				
+				// do ajax post data
 				while(i < cont)
 				{
+					// sets order data values
 					var product_code = $("input[name^=product-code-" + i + "]").val();
 					var product_name = $("input[name^=product-name-" + i + "]").val();
 					var product_qty = $("input[name^=product-count-" + i + "]").val();
-					var product_unit = $("select[name^=product-unit-" + i + "]").val();
-					var product_type = $("select[name^=product-type-" + i + "]").val();
+					var product_unit = $('.product-unit').val();
+					var product_type = $(".product-type").val();
 					var product_price = $("input[name^=product-price-" + i + "]").val();
+					var product_total = $("input[name^=product-total-" + i + "]").val();
 					
+					// sets ajax post data
 					var postdata = {'po_number':po_number, 
 									'po_date':po_date, 
 									'supplier':supplier,
 									'key_person':key_person,
-									'product_count_first':product_count_first, 
+									'address':address,
+									'instruction':instruction,
 									'product_code':product_code,
 									'product_name':product_name,
 									'product_qty':product_qty,
-									'product_price':product_price
+									'product_unit':product_unit,
+									'product_type':product_type,
+									'product_price':product_price,
+									'product_total':product_total,
+									'total_order':total_order
 									};
-								
+					
+					// make ajax call			
 					$.ajax({
      					type: "POST",
 						dataType: "json",
@@ -156,35 +170,67 @@ $(document).ready(
      					data: postdata ,
      					success: function(data){
         				
-						/*
-						if(data.error_po_number)
-						{
-							$('.form-error.po-number-error').html(data.error_po_number).css("display","block");
-						}
-						*/
 						
+							if(data.po_number_error)
+							{
+								$('.form-error.po-number-error').html(data.po_number_error).css("display","block");
+								//alert(data.po_number_error);
+							}
 						
-						if(data.product_code_error)
-						{
-							i--;
-							alert(data.product_code_error + i);
-							$("input[name^=product-code-" + i + "]").css("outline","1px solid red");
-						}
+							if(data.po_date_error)
+							{
+								$('.form-error.po-date-error').html(data.po_date_error).css("display","block");
+								//alert(data.po_number_error);
+							}
 						
-						if(data.product_name_error)
-						{
-							alert(data.product_name_error);
-						}
+							if(data.supplier_error)
+							{
+								$('.form-error.supplier-error').html(data.supplier_error).css("display","block");
+								//alert(data.po_number_error);
+							}
 						
-						if(data.product_qty_error)
-						{
-							alert(data.product_qty_error);
-						}
+							if(data.key_person_error)
+							{
+								$('.form-error.key-person-error').html(data.key_person_error).css("display","block");
+								//alert(data.po_number_error);
+							}
 						
-						if(data.product_price_error)
-						{
-							alert(data.product_price_error);
-						}
+							if(data.total_order_error)
+							{
+								//$('.form-error.key-person-error').html(data.key_person_error).css("display","block");
+								alert(data.total_order_error);
+							}
+						
+							if(data.product_code_error)
+							{
+								alert(data.product_code_error + i);
+								$("input[name^=product-code-" + i + "]").css("outline","1px solid red");
+							}
+						
+							if(data.product_name_error)
+							{
+								alert(data.product_name_error);
+							}
+						
+							if(data.product_qty_error)
+							{
+								alert(data.product_qty_error);
+							}
+						
+							if(data.product_price_error)
+							{
+								alert(data.product_price_error);
+							}
+						
+							if(data.product_total_error)
+							{
+								alert(data.product_total_error);
+							}
+						
+							if(data.location)
+							{
+								window.location = data.location;
+							}
 						
 					}
 				});	

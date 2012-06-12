@@ -19,10 +19,5 @@
             return $query;
         }
         // end save_meta_data method
-        
-        public function select_po_number($po_number)
-        {
-            $query = $this->db->query("SELECT po_number FROM order_meta_data WHERE po_number = $po_number");
-            return $query->result();
-        }
+
     }

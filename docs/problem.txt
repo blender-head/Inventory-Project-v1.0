@@ -6,8 +6,8 @@ Problemo :
 
 	- http://stackoverflow.com/questions/2145012/adding-rows-dynamically-with-jquery
 
-#2 Loading data from controller using jquery
+#2 send/receive data from controller using jquery ajax (solved)
 
-#3 Automatic addition using jquery, from array input :
+#3 Automatic addition using jquery, from array input (solved, use a calculate button)
 
-	solved
+#4 Form validation using ajax jquery and codeigniter contrller (solved)
