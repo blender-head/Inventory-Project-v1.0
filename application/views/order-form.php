@@ -107,7 +107,7 @@
                         <div class="button-wrapper"><!--button-wrapper-->
                         	<input type="button" name="calculate-order" value="Calculate Order" id="calculate-order" />
                         	<input type="button" name="save-order" value="Save Order" id="save-order" /> 
-                        	<span>or</span> 
+                        	<span class="or">or</span> 
                         	<input type="button" name="add-order" value="Add More" id="add-order" />
                             <input type="hidden" name="add-count" />
                         </div><!--/button-wrapper-->

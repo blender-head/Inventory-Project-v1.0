@@ -17,30 +17,39 @@ $(document).ready(
 			
 			
 			// add row dynamically to #add-order table
-			$("#add-order").live("click",
+			$("#add-order").click(
 			
-				function test() 
+				function () 
 				{
 					
 					// set i to foo return value
 					var i = staticCounter();
+					
 					//set variable to apply to name attributes
 					var nam_code = "product-code-" + i;
-					var nam_item = "product-name-" + i;
-					var nam_total = "product-total-" + i;
-					var nam_price = "product-price-" + i;
+					var nam_name = "product-name-" + i;
 					var nam_count = "product-count-" + i;
+					var nam_unit_type = "product-unit-" + i;
+					var nam_product_type = "product-type-" + i;
+					var nam_price = "product-price-" + i;
+					var nam_total = "product-total-" + i;
+					
 					// clone the #table-order last row
-					var cont = $('#table-order tr:last').clone(true,true);
+					var cont = $('#table-order tr:last').clone(true);
+					
 					// find element that has product-total, product-price and product-count class
 					// if they exist, change their name attribute to be same as variables (name, nam2, nam3) above
+					$(cont).find('.product-code').attr("name", nam_code).end();
+					$(cont).find('.product-name').attr("name", nam_name).end();
+					$(cont).find('.product-count').attr("name", nam_count).end();
+					$(cont).find('.product-unit').attr("name", nam_unit_type).end();
+					$(cont).find('.product-type').attr("name", nam_product_type).end();
 					$(cont).find('.product-total').attr("name", nam_total).end();
 					$(cont).find('.product-price').attr("name", nam_price).end();
-					$(cont).find('.product-count').attr("name", nam_count).end();
-					$(cont).find('.product-code').attr("name", nam_code).end();
-					$(cont).find('.product-name').attr("name", nam_item).end();
+									
 					// insert the cloned element to the #table-order last position
 					$(cont).insertAfter('#table-order tr:last');
+					
 					// reset the values of the cloned element
 					$('#table-order tr:last .product-code').val('');
 					$('#table-order tr:last .product-code').css("outline","none");
@@ -49,7 +58,7 @@ $(document).ready(
 					$('#table-order tr:last .product-price').val('');
 					$('#table-order tr:last .product-total').val('');
 					
-					return i;
+					return false;
         		}
 			);
 			
@@ -132,6 +141,7 @@ $(document).ready(
 				
 				var i = 0;
 				
+				
 				// do ajax post data
 				while(i < cont)
 				{
@@ -143,9 +153,9 @@ $(document).ready(
 					var product_type = $(".product-type").val();
 					var product_price = $("input[name^=product-price-" + i + "]").val();
 					var product_total = $("input[name^=product-total-" + i + "]").val();
-					
 					// sets ajax post data
 					var postdata = {
+									'length':arr.length,
 									'po_number':po_number, 
 									'po_date':po_date, 
 									'supplier':supplier,
@@ -169,7 +179,11 @@ $(document).ready(
 						url: "http://localhost/alkes/index.php/order/order_form_validation",
      					data: postdata ,
      					success: function(data){
-        				
+        					if(data.product_code)
+							{
+								alert(data.product_code);	
+							}
+							
 						
 							if(data.po_number_error)
 							{
@@ -226,18 +240,21 @@ $(document).ready(
 							{
 								alert(data.product_total_error);
 							}
-						
+							
+							/*
 							if(data.location)
 							{
 								window.location = data.location;
 							}
-						
+							*/
 					}
-				});	
-				
-					i++
+					});	
+					i++;
 				}
+					
+					
 				
+
 				return false;
 				
 			});

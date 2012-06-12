@@ -267,7 +267,7 @@ div#main-content-inner p.para-common {
 	display: block;
 }
 
-div#main-content-inner span {
+div#main-content-inner span.or {
 	font-family: ChunkFive;
 	font-size: 14px;
 	color: #000000;
@@ -556,8 +556,58 @@ table#table-order td.td-product-total input {
 
 /* end table order styles */
 
+
 /* order list styles */
 
+div.order-list-header {
+	background: #202b30;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;
+	padding: 7px;
+	margin-bottom: 10px;
+}
+
+div.order-list-header div.po-number-list {
+	float: left;
+	position: relative;
+	top: 3px;
+	left: 7px;
+	margin-right: 120px;
+}
+
+div.order-list-header div.po-date-list {
+	float: left;
+	position: relative;
+	top: 3px;
+	margin-right: 120px;
+}
+
+div.order-list-header div.po-status-list {
+	float: left;
+	position: relative;
+	margin-right: 120px;
+}
+
+div.order-list-header div.po-status-list select {
+	height: 20px;
+	font-family: "Graublau Web";
+	font-size: 12px;
+	background: #e8e8e8;
+	border: none;
+}
+
+div.order-list-header div.po-details {
+	float: left;
+	position: relative;
+	top: 3px;
+}
+
+div.order-list-header div.po-number-list span, div.po-date-list span, div.po-status-list label#order-status-label, div.po-details span a {
+	font-family: "Graublau Web";
+	font-size: 14px;
+	color: #a3abaf;	
+}
 
 /* end order list styles */
 

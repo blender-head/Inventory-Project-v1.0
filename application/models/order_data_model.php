@@ -20,4 +20,10 @@
         }
         // end save_data method
         
+        public function get_data($po_number)
+        {
+            $query = $this->db->query("SELECT * FROM order_data WHERE po_number = '$po_number'");
+            return $query->result();
+        }
+        
     }
