@@ -17,6 +17,8 @@ $(document).ready(
     			return staticCounter.counter;
 			}
 			
+			
+			
 			$('#edit-data').click(function() {
 				
 				$('th.th-product-code').hide();
@@ -153,6 +155,7 @@ $(document).ready(
 			$('#save-order').click(function() {
 				
 				// sets values of order meta data
+				var counter = staticCounter();
 				var po_number = $('#po-number').val();
 				var po_date = $('#po-date').val();
 				var supplier = $('#supplier').val();
@@ -163,6 +166,7 @@ $(document).ready(
 
 				// prepare data for ajax call
 				var postdata = {
+								'counter':counter,
 								'po_number':po_number, 
 								'po_date':po_date, 
 								'supplier':supplier,
@@ -183,7 +187,7 @@ $(document).ready(
 						{
 							if(data.po_number_exist)
 							{
-								alert(data.po_number_exist + " already exist");	
+								alert(data.counter);	
 							}
 							
 							if(data.data_saved)

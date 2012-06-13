@@ -66,6 +66,7 @@
             $address = $this->input->post('address');
             $instruction = $this->input->post('instruction');
             $total_order = $this->input->post('total_order'); 
+            $counter = $this->input->post('counter');
             
             // order meta data validation :
             $this->form_validation->set_rules('po_number', 'PO Number', 'required|numeric');
@@ -105,7 +106,8 @@
                     {
                         $po_number = $result->po_number;
                     }
-                    $data = array('po_number_exist'=>$po_number, 'po_number'=>$po_number, 'po_date'=>$po_date);
+                    
+                    $data = array('po_number_exist'=>$po_number, 'po_number'=>$po_number, 'po_date'=>$po_date, 'counter'=>$counter);
                     echo json_encode($data);  
                 }
                 else
