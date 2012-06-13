@@ -6,6 +6,8 @@ $(document).ready(
 	
 		function() {
 			
+
+			
 			// function to generate static counter
 			function staticCounter() {
 				if( typeof staticCounter.counter == 'undefined' ) {
@@ -158,9 +160,9 @@ $(document).ready(
 				var address = $('#address').val();
 				var instruction = $('#instruction').val();
 				var total_order = $('#total-order').val();
-				
+
 				// prepare data for ajax call
-				var testData = {
+				var postdata = {
 								'po_number':po_number, 
 								'po_date':po_date, 
 								'supplier':supplier,
@@ -174,137 +176,149 @@ $(document).ready(
 				$.ajax({
      					type: "POST",
 						dataType: "json",
-						url: "http://localhost/alkes/index.php/order/order_form_validation",
-     					data: testData,
-     					success: function (data){
+						url: "http://localhost/alkes/index.php/order/order_save_meta_data",
+     					data: postdata,
+     					success: function (data)
+						// start success function #1
+						{
 							
+							if(data.data_saved)
+							{
+								alert(data.data_saved);
+							}
 							
 							if(data.po_number_error)
 							{
-								$('.form-error.po-number-error').html(data.po_number_error).css("display","block");
+								alert(data.po_number_error);
+								//$('.form-error.po-number-error').html(data.po_number_error).css("display","block");
 							}
 						
 							if(data.po_date_error)
 							{
-								$('.form-error.po-date-error').html(data.po_date_error).css("display","block");
+								alert(data.po_date_error);
+								//$('.form-error.po-date-error').html(data.po_date_error).css("display","block");
 							}
 						
 							if(data.supplier_error)
 							{
-								$('.form-error.supplier-error').html(data.supplier_error).css("display","block");
+								alert(data.supplier_error);
+								//$('.form-error.supplier-error').html(data.supplier_error).css("display","block");
 							}
 						
 							if(data.key_person_error)
 							{
-								$('.form-error.key-person-error').html(data.key_person_error).css("display","block");
+								alert(data.key_person_error);
+								//$('.form-error.key-person-error').html(data.key_person_error).css("display","block");
 							}
 							
-							if(data.product_total_error)
+							if(data.total_order_error)
 							{
 								alert(data.total_order_error);
 								//return data.product_total_error;
 							}
-						}
-				});
-				
-				// sets the value for maximum iterator
-				// based on row count value	
-				var arr = [];	
-				
-				$("input[name^=product-code]").each
-				(
-				
-					function () 
-					{
-    					var items = $(this).val();
-						arr.push(items);
-					}
-					
-				);
-				
-				var cont = arr.length;
-				
-				var i = 0;
-				
-				
-				// do ajax post data
-				while(i < cont)
-				{
-					// sets order data values
-					var product_code = $("input[name^=product-code-" + i + "]").val();
-					var product_name = $("input[name^=product-name-" + i + "]").val();
-					var product_qty = $("input[name^=product-count-" + i + "]").val();
-					var product_unit = $("select[name^=product-unit-" + i + "]").val();
-					var product_type = $("select[name^=product-type-" + i + "]").val();
-					var product_price = $("input[name^=product-price-" + i + "]").val();
-					var product_total = $("input[name^=product-total-" + i + "]").val();
-					
-					// sets ajax post data
-					var postdata = {
-									'product_code':product_code,
-									'product_name':product_name,
-									'product_qty':product_qty,
-									'product_unit':product_unit,
-									'product_type':product_type,
-									'product_price':product_price,
-									'product_total':product_total
-									};
-					
-					// make ajax call			
-					$.ajax({
-     					type: "POST",
-						dataType: "json",
-						url: "http://localhost/alkes/index.php/order/order_form_validation",
-     					data: postdata ,
-     					success: function (data){
 							
-							if(data.product_code)
-							{
-								alert(data.product_code);
-							}
-
+							arr = [];
 							
-							if(data.product_code_error)
-							{
-								alert(data.product_code_error + i);
-								$("input[name^=product-code-" + i + "]").css("outline","1px solid red");
-							}
-						
-							if(data.product_name_error)
-							{
-								alert(data.product_name_error);
-							}
-						
-							if(data.product_qty_error)
-							{
-								alert(data.product_qty_error);
-							}
-						
-							if(data.product_price_error)
-							{
-								alert(data.product_price_error);
-							}
-						
-							if(data.product_total_error)
-							{
-								alert(data.product_total_error);
-							}
-							
-							/*
-							if(data.location)
-							{
-								window.location = data.location;
-							}
-							*/
-						}
-						
-					});	
+							$("input[name^=product-code]").each
+							(
+				
+								function () 
+								{
+    								var items = $(this).val();
+									arr.push(items);
+								}
 					
-					i++;
+							);
+				
+							var cont = arr.length;
+				
+							var i = 0;
+							
+							//start while
+							while(i < cont)
+							{
+								// sets order data values
+								var product_code = $("input[name^=product-code-" + i + "]").val();
+								var product_name = $("input[name^=product-name-" + i + "]").val();
+								var product_qty = $("input[name^=product-count-" + i + "]").val();
+								var product_unit = $("select[name^=product-unit-" + i + "]").val();
+								var product_type = $("select[name^=product-type-" + i + "]").val();
+								var product_price = $("input[name^=product-price-" + i + "]").val();
+								var product_total = $("input[name^=product-total-" + i + "]").val();
+								
+								var postdata = {
+												'po_number':data.po_number,
+												'po_date':data.po_date,
+												'product_code':product_code,
+												'product_name':product_name,
+												'product_qty':product_qty,
+												'product_unit':product_unit,
+												'product_type':product_type,
+												'product_price':product_price,
+												'product_total':product_total
+												};
+												
+								$.ajax({
+								
+									type: "POST",
+									dataType: "json",
+									url: "http://localhost/alkes/index.php/order/order_save_data/",
+     								data: postdata,
+     								success: function (data) 
+										//start success function #2
+										{
+											
+											if(data.po_number_error)
+											{
+												alert(data.po_number_error);
+												$("input[name^=product-code-" + i + "]").css("outline","1px solid red");
+											}
+											
+											if(data.po_date_error)
+											{
+												alert(data.po_date_error);
+												$("input[name^=product-code-" + i + "]").css("outline","1px solid red");
+											}
+						
+											if(data.product_name_error)
+											{
+												alert(data.product_name_error);
+											}
+								
+											if(data.product_qty_error)
+											{
+												alert(data.product_qty_error);
+											}
+								
+											if(data.product_price_error)
+											{
+												alert(data.product_price_error);
+											}
+								
+											if(data.product_total_error)
+											{
+												alert(data.product_total_error);
+											}
+									
+											/*
+											if(data.location)
+											{
+												window.location = data.location;
+											}
+											*/
+											} // end success function #2
+							
+									}); // end ajax call #2
+												
+								i++
+							} // end while
+							
+						} // end success function #1
+						
+				}); // end ajax call #1
 			
-			}
-					
-		});
-	}
+			}); // end save-order click
 		
-);
+		} // end main function
+		
+); // end document ready
