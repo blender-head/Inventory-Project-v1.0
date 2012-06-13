@@ -81,9 +81,10 @@
             $product_type = $this->input->post('product_type');
             $product_price = $this->input->post('product_price');
             $product_total = $this->input->post('product_total');
-            $length = $this->input->post('length');
+                        
+            $data = array('product_code' => $product_code);
+            echo json_encode($data);        
             
-                    
             // set rules for form validation :
                         
             // order meta data validation :
@@ -95,10 +96,10 @@
             
             // order data validation :
             $this->form_validation->set_rules('product_code', 'Product Code', 'required|numeric');
-            $this->form_validation->set_rules('product_name', 'Product Name', 'required');
-            $this->form_validation->set_rules('product_qty', 'Product Quantity', 'required|numeric');
-            $this->form_validation->set_rules('product_price', 'Product Price', 'required|numeric');
-            $this->form_validation->set_rules('product_total', 'Product Total', 'required|numeric');
+            //$this->form_validation->set_rules('product_name', 'Product Name', 'required');
+            //$this->form_validation->set_rules('product_qty', 'Product Quantity', 'required|numeric');
+            //$this->form_validation->set_rules('product_price', 'Product Price', 'required|numeric');
+            //$this->form_validation->set_rules('product_total', 'Product Total', 'required|numeric');
             
             // if the validation fails
             if($this->form_validation->run() == FALSE)
@@ -110,26 +111,21 @@
                 $key_person_error = form_error('key_person');
                 $total_order_error = form_error('total_order');
                 $product_code_error = form_error('product_code');
-                $product_name_error = form_error('product_name');
-                $product_qty_error = form_error('product_qty');
-                $product_price_error = form_error('product_price');
-                $product_total_error = form_error('product_total');
+                //$product_name_error = form_error('product_name');
+                //$product_qty_error = form_error('product_qty');
+                //$product_price_error = form_error('product_price');
+                //$product_total_error = form_error('product_total');
                 
                 // set ajax data to order_form.php view, for debugging purposes
                 $data = array('po_number_error'=>$po_number_error,
                               'po_date_error'=>$po_date_error,
                               'supplier_error'=>$supplier_error,
                               'key_person_error'=>$key_person_error,
-                              'total_order_error'=>$total_order_error,
-                              'product_code_error'=>$product_code_error, 
-                              'product_name_error'=>$product_name_error,
-                              'product_qty_error'=>$product_qty_error,
-                              'product_price_error'=>$product_price_error,
-                              'product_total_error'=>$product_total_error
+                              'total_order_error'=>$total_order_error
                              );
                 
                 // send ajax data to order_form.php view as jason data
-                echo json_encode($data);
+                //echo json_encode($data);
             }
             // if all the validation went thru...
             else
@@ -146,15 +142,8 @@
                 
                 // if both operation above are succeeded
                 // send the redirect location as ajax json data to order_form.php view
-                if($insert_data && $input_meta_data)
-                {
-                    //$base = base_url();
-                    //$location = $base . 'index.php/order/order_list';
-                    $value = "TRUE";
-                    $data = array('value' => $value);
-                    echo json_encode($data);
-                }
-                
+
+
             }
            
         }

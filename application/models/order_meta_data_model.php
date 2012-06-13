@@ -18,7 +18,7 @@
         // method to save order meta data to order_meta_data table
         public function save_meta_data($po_number, $po_date, $supplier, $key_person, $address, $instruction, $total_order, $status)
         {
-            $query = $this->db->query("INSERT IGNORE INTO order_meta_data (po_number, po_date, supplier, key_person, supplier_address, instructions, total_order, status)
+            $query = $this->db->query("INSERT INTO order_meta_data (po_number, po_date, supplier, key_person, supplier_address, instructions, total_order, status)
                                        VALUE ('$po_number', '$po_date', '$supplier', '$key_person', '$address', '$instruction', '$total_order', '$status')");
             return $query;
         }

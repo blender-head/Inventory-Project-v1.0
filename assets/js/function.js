@@ -99,6 +99,8 @@ $(document).ready(
 				position: "inherit"
 			});
 			
+			// show calendar using glDatePicker plugin
+			// order_details
 			$(".prod-exp-time").glDatePicker(
 			{
 				cssName: "android",
@@ -157,6 +159,54 @@ $(document).ready(
 				var instruction = $('#instruction').val();
 				var total_order = $('#total-order').val();
 				
+				// prepare data for ajax call
+				var testData = {
+								'po_number':po_number, 
+								'po_date':po_date, 
+								'supplier':supplier,
+								'key_person':key_person,
+								'address':address,
+								'instruction':instruction,
+								'total_order':total_order
+								};
+				
+				// make ajax call
+				$.ajax({
+     					type: "POST",
+						dataType: "json",
+						url: "http://localhost/alkes/index.php/order/order_form_validation",
+     					data: testData,
+     					success: function (data){
+							
+							
+							if(data.po_number_error)
+							{
+								$('.form-error.po-number-error').html(data.po_number_error).css("display","block");
+							}
+						
+							if(data.po_date_error)
+							{
+								$('.form-error.po-date-error').html(data.po_date_error).css("display","block");
+							}
+						
+							if(data.supplier_error)
+							{
+								$('.form-error.supplier-error').html(data.supplier_error).css("display","block");
+							}
+						
+							if(data.key_person_error)
+							{
+								$('.form-error.key-person-error').html(data.key_person_error).css("display","block");
+							}
+							
+							if(data.product_total_error)
+							{
+								alert(data.total_order_error);
+								//return data.product_total_error;
+							}
+						}
+				});
+				
 				// sets the value for maximum iterator
 				// based on row count value	
 				var arr = [];	
@@ -188,23 +238,16 @@ $(document).ready(
 					var product_type = $("select[name^=product-type-" + i + "]").val();
 					var product_price = $("input[name^=product-price-" + i + "]").val();
 					var product_total = $("input[name^=product-total-" + i + "]").val();
+					
 					// sets ajax post data
 					var postdata = {
-									'length':arr.length,
-									'po_number':po_number, 
-									'po_date':po_date, 
-									'supplier':supplier,
-									'key_person':key_person,
-									'address':address,
-									'instruction':instruction,
 									'product_code':product_code,
 									'product_name':product_name,
 									'product_qty':product_qty,
 									'product_unit':product_unit,
 									'product_type':product_type,
 									'product_price':product_price,
-									'product_total':product_total,
-									'total_order':total_order
+									'product_total':product_total
 									};
 					
 					// make ajax call			
@@ -213,49 +256,14 @@ $(document).ready(
 						dataType: "json",
 						url: "http://localhost/alkes/index.php/order/order_form_validation",
      					data: postdata ,
-     					success: function(data){
+     					success: function (data){
 							
-							if(data.value)
+							if(data.product_code)
 							{
-								alert(data.value);
+								alert(data.product_code);
 							}
+
 							
-        					if(data.product_code)
-							{
-								alert(data.product_code);	
-							}
-							
-						
-							if(data.po_number_error)
-							{
-								$('.form-error.po-number-error').html(data.po_number_error).css("display","block");
-								//alert(data.po_number_error);
-							}
-						
-							if(data.po_date_error)
-							{
-								$('.form-error.po-date-error').html(data.po_date_error).css("display","block");
-								//alert(data.po_number_error);
-							}
-						
-							if(data.supplier_error)
-							{
-								$('.form-error.supplier-error').html(data.supplier_error).css("display","block");
-								//alert(data.po_number_error);
-							}
-						
-							if(data.key_person_error)
-							{
-								$('.form-error.key-person-error').html(data.key_person_error).css("display","block");
-								//alert(data.po_number_error);
-							}
-						
-							if(data.total_order_error)
-							{
-								//$('.form-error.key-person-error').html(data.key_person_error).css("display","block");
-								alert(data.total_order_error);
-							}
-						
 							if(data.product_code_error)
 							{
 								alert(data.product_code_error + i);
@@ -289,16 +297,14 @@ $(document).ready(
 							}
 							*/
 						}
+						
 					});	
-					i++;
-				}
 					
-				return false;
-				
-			});
+					i++;
 			
-			
-
+			}
+					
+		});
 	}
 		
 );
