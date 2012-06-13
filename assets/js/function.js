@@ -214,6 +214,12 @@ $(document).ready(
 						url: "http://localhost/alkes/index.php/order/order_form_validation",
      					data: postdata ,
      					success: function(data){
+							
+							if(data.value)
+							{
+								alert(data.value);
+							}
+							
         					if(data.product_code)
 							{
 								alert(data.product_code);	

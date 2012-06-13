@@ -36,7 +36,8 @@
                     			<tr>
                         			<th class="th-product-code">Code</th>
                                     <th class="th-product-code-edit">Code</th>
-                            		<th>Item Name</th>
+                            		<th class="th-product-name">Item Name</th>
+                                    <th class="th-product-name-edit">Item Name</th>
                             		<th>Qty</th>
                             		<th>Unit</th>
                             		<th>Type</th>
@@ -53,8 +54,13 @@
                             	                               	
                         			<tr>
                         				<td class="td-product-code"><?php echo $order_data->product_number ?></td>
-                                        <td class="td-product-code-edit"><input type="text" name="product-code" class="product-code-edit" value="<?php echo $order_data->product_number ?>" /></td>
+                                        <td class="td-product-code-edit">
+                                        	<input type="text" name="product-code" class="product-code-edit" value="<?php echo $order_data->product_number ?>" />
+                                        </td>
                             			<td class="td-product-name"><?php echo $order_data->product_name ?></td>
+                                        <td class="td-product-name-edit">
+                                        	<input type="text" name="product-name" class="product-name-edit" value="<?php echo $order_data->product_name ?>" />
+                                        </td>
                             			<td class="td-product-count"><?php echo $order_data->product_count ?></td>
                             			<td class="td-product-unit"><?php echo $order_data->unit_name ?></td>
                             			<td class="td-product-type"><?php echo $order_data->product_type_name ?></td>

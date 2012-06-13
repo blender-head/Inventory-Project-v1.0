@@ -576,10 +576,10 @@ table#table-order td {
 }
 
 table#table-order td.td-order-op {
-	width: 5%;	
+	width: 15%;	
 }
 
-table#table-order td.td-order-op div.see-order-details, div.order-print {
+table#table-order td.td-order-op div.see-order-details, div.order-print, div.order-delete {
 	float: left;	
 	overflow: hidden;
 }
@@ -587,6 +587,10 @@ table#table-order td.td-order-op div.see-order-details, div.order-print {
 div.see-order-details {
 	margin-right: 10px;
 	margin-left: 20px;	
+}
+
+div.order-print {
+	margin-right: 10px;	
 }
 
 a.order-details-link {
@@ -603,6 +607,14 @@ a.order-details-print {
 	width: 15px;
 	height: 15px;
 	background: url(../image/print.png) no-repeat;	
+}
+
+a.order-details-delete {
+	display: block;
+	text-indent: -9999px;
+	width: 15px;
+	height: 15px;
+	background: url(../image/remove.png) no-repeat;	
 }
 
 /* end order list styles */
@@ -705,11 +717,19 @@ table#table-order-details th.th-payment-method {
 	display: none;	
 }
 
-table#table-order-details th.th-code-edit {
+table#table-order-details th.th-product-code-edit {
 	display: none;	
 }
 
 table#table-order-details td.td-product-code-edit {
+	display: none;
+}
+
+table#table-order-details th.th-product-name-edit {
+	display: none;
+}
+
+table#table-order-details td.td-product-name-edit {
 	display: none;
 }
 

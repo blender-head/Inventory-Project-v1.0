@@ -148,9 +148,10 @@
                 // send the redirect location as ajax json data to order_form.php view
                 if($insert_data && $input_meta_data)
                 {
-                    $base = base_url();
-                    $location = $base . 'index.php/order/order_list';
-                    $data = array('location' => $location);
+                    //$base = base_url();
+                    //$location = $base . 'index.php/order/order_list';
+                    $value = "TRUE";
+                    $data = array('value' => $value);
                     echo json_encode($data);
                 }
                 
