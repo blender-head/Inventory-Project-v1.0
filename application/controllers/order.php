@@ -68,7 +68,7 @@
             $total_order = $this->input->post('total_order'); 
             
             // order meta data validation :
-            $this->form_validation->set_rules('po_number', 'PO Number', 'required|numeric|is_unique[order_meta_data.po_number]');
+            $this->form_validation->set_rules('po_number', 'PO Number', 'required|numeric');
             $this->form_validation->set_rules('po_date', 'PO Date', 'required');
             $this->form_validation->set_rules('supplier', 'Supplier', 'required');
             $this->form_validation->set_rules('key_person', 'Key Person', 'required');
@@ -97,11 +97,25 @@
             }
             else
             {
-                $status = "Order Sent";
-                $order_save_meta_data = $this->order_meta_data_model->save_meta_data($po_number, $po_date, $supplier, $key_person, $address, $instruction, $total_order, $status);
-                $success = 'data saved';
-                $data = array('data_saved'=>$order_save_meta_data, 'po_number'=>$po_number, 'po_date'=>$po_date);
-                echo json_encode($data); 
+                $get_po_number = $this->order_meta_data_model->get_meta_data($po_number);
+                
+                if(sizeof($get_po_number) > 0)
+                {
+                    foreach($get_po_number as $result)
+                    {
+                        $po_number = $result->po_number;
+                    }
+                    $data = array('po_number_exist'=>$po_number, 'po_number'=>$po_number, 'po_date'=>$po_date);
+                    echo json_encode($data);  
+                }
+                else
+                {
+                    $status = "Order Sent";
+                    $order_save_meta_data = $this->order_meta_data_model->save_meta_data($po_number, $po_date, $supplier, $key_person, $address, $instruction, $total_order, $status);
+                    $success = 'data saved';
+                    $data = array('data_saved'=>$order_save_meta_data, 'po_number'=>$po_number, 'po_date'=>$po_date);
+                    echo json_encode($data); 
+                }
             }
         }
         

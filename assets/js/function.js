@@ -181,6 +181,10 @@ $(document).ready(
      					success: function (data)
 						// start success function #1
 						{
+							if(data.po_number_exist)
+							{
+								alert(data.po_number_exist + " already exist");	
+							}
 							
 							if(data.data_saved)
 							{
