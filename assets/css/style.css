@@ -10,6 +10,7 @@
 		* common content styles
 		* table order styles
 		* order list styles
+		* order details styles
 	5. FOOTER STYLES
 	6. FORM ERROR STYLES
 
@@ -568,62 +569,189 @@ div.order-list-header {
 	margin-bottom: 10px;
 }
 
-div.order-data-wrapper {
-	margin-bottom: 50px;	
-	display: none;
-}
-
-div.order-list-header div.po-number-list {
-	float: left;
-	position: relative;
-	left: 7px;
-	margin-right: 120px;
-}
-
-div.order-list-header div.po-date-list {
-	float: left;
-	position: relative;
-	margin-right: 140px;
-}
-
-div.order-list-header div.po-status-list {
-	float: left;
-	position: relative;
-	margin-right: 140px;
-}
-
-div.order-list-header div.po-details {
-	float: left;
-	position: relative;
-	top: 3px;
-}
-
-div.order-list-header div.po-details {
-	float: left;
-	position: relative;
-	top: -2px;
-}
-
-div.order-list-header div.po-number-list span, div.po-date-list span, div.po-status-list span, div.total-order span, div.po-details span a {
-	font-family: "Graublau Web";
-	font-size: 14px;
-	color: #a3abaf;	
-}
-
-div.total-order {
-	float: right;	
-	position: relative;
-	margin-top: 5px;
-	right: 30px;
-}
-
 table#table-order td {
 	font-family: "Graublau Web";
-	font-size: 14px;	
+	font-size: 14px;
+	text-align: center;
+}
+
+table#table-order td.td-order-op {
+	width: 5%;	
+}
+
+table#table-order td.td-order-op div.see-order-details, div.order-print {
+	float: left;	
+	overflow: hidden;
+}
+
+div.see-order-details {
+	margin-right: 10px;
+	margin-left: 20px;	
+}
+
+a.order-details-link {
+	display: block;
+	text-indent: -9999px;
+	width: 15px;
+	height: 15px;
+	background: url(../image/search.png) no-repeat;	
+}
+
+a.order-details-print {
+	display: block;
+	text-indent: -9999px;
+	width: 15px;
+	height: 15px;
+	background: url(../image/print.png) no-repeat;	
 }
 
 /* end order list styles */
 
+
+
+/* order details styles */
+
+body.order-details-content {
+	background: #fff;	
+}
+
+div#wrapper-details {
+	width: 1000px;
+	margin-top: 30px;
+	margin-right: auto;
+	margin-left: auto;
+	outline: 1px solid #ccc;
+	padding: 20px;
+}
+
+div#content-order-details {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div#content-order-details h1 {
+	font-family: "Graublau Web";
+	font-size: 24px;
+	color: #000;
+	margin-bottom: 20px;
+}
+
+div#content-order-details p {
+	font-family: "Graublau Web";
+	font-size: 14px;	
+	margin-bottom: 10px;	
+}
+
+table#table-order-details {
+	width: 1000px;	
+	margin-top: 30px;
+	border: 1px solid #ccc;
+}
+
+table#table-order-details th {
+	font-family: "Graublau Web";
+	font-size: 16px;	
+	margin-bottom: 10px;
+	border: 1px solid #ccc;	
+	padding: 5px;
+	background: #000;
+	color: #fff;
+}
+
+table#table-order-details td {
+	font-family: "Graublau Web";
+	font-size: 14px;	
+	margin-bottom: 10px;
+	border: 1px solid #ccc;	
+	padding: 5px;
+	text-align: center;
+}
+
+table#table-order-details td.td-product-type {
+	width: 10%;	
+}
+
+table#table-order-details td.td-product-price {
+	width: 10%;	
+}
+
+table#table-order-details td.td-product-total {
+	width: 10%;	
+}
+
+
+table#table-order-details td.td-payment-method {
+	width: 10%;	
+}
+
+table#table-order-details td.td-product-expiry-date {
+	width: 10%;	
+}
+
+table#table-order-details td.td-product-expiry-date {
+	display: none;
+}
+
+table#table-order-details th.th-product-expiry-date {
+	display: none;	
+}
+
+table#table-order-details td.td-payment-method {
+	display: none;
+}
+
+table#table-order-details th.th-payment-method {
+	display: none;	
+}
+
+table#table-order-details th.th-code-edit {
+	display: none;	
+}
+
+table#table-order-details td.td-product-code-edit {
+	display: none;
+}
+
+
+div.order-total {
+	float: right;
+	margin-top: 10px;	
+	position: relative;
+	top: -33px;
+	left: -5px;
+}
+
+div.order-total span {
+	font-family: "Graublau Web";
+	font-size: 14px;	
+	margin-bottom: 10px;	
+}
+
+div.order-op {
+	margin-top: 15px;	
+}
+
+select#order-status-select {
+	display: none;
+}
+
+input.product-code-edit {
+	
+}
+
+
+/*
+table#table-order-details th.payment-method-th {
+	display: none;	
+}
+
+table#table-order-details td.td-payment-method {
+	display: none;	
+}
+*/
+
+/* end order details styles */
 
 
 /* END CONTENT STYLES */

@@ -15,79 +15,28 @@
                 	<?php $i = 1 ?>
                 	
                     <?php if($records > 0) : ?>
-                	
-						<?php foreach ($records as $data): ?>
-                
-                		<div class="order-list-header"><!--order-list-header-->
-                    
-                    		<div class="po-number-list"><!--po-number-list-->
-                        		<span>PO Number : <?php echo $data->po_number ?></span>
-                        	</div><!--/po-number-list-->
-                        
-                        	<div class="po-date-list"><!--po-date-list-->
-                        		<span>PO Date : <?php echo $data->po_date ?></span>
-                        	</div><!--/po-date-list-->
-                        
-                        	<div class="po-status-list"><!--po-status-list-->
-                        		<span>Status : <?php echo $data->status ?></span>
-                        	</div><!--/po-status-list-->
-                        
-                        	<div class="po-details"><!--po-details-->
-                        		<span><a href="" class="see-details">See Details</a></span>
-                        	</div><!--/po-details-->
-                        
-                       		<div class="clear"></div>
-                                           
-                    	</div><!--/order-list-header-->
-                        
-                        <div class="order-data-wrapper wrapper-<?php echo $i++ ?>"><!--order-data-wrapper-->
-                        
-                        	<table id="table-order"><!--table-order-->
+                		
+						<table id="table-order"><!--table-order-->
                         
                     			<tr>
-                        			<th>Code</th>
-                            		<th>Item Name</th>
-                            		<th>Qty</th>
-                            		<th>Unit</th>
-                            		<th>Type</th>
-                            		<th>Buy Price</th>
-                            		<th>Total</th>
+                        			<th>PO Number</th>
+                            		<th>PO Date</th>
+                            		<th>Order Status</th>
+                            		<th>Operations</th>
                         		</tr>
-                            
-                             	<?php  $query_data = $this->order_data_model->get_data($data->po_number) ?>
-                            
-                             	<?php foreach($query_data as $order_data) :?>
+                                
+                        		<?php foreach ($records as $data): ?>
                             	                               	
                         			<tr>
-                        				<td class="td-product-code"><?php echo $order_data->product_number ?></td>
-                            			<td class="td-product-name"><?php echo $order_data->product_name ?></td>
-                            			<td class="td-product-count"><?php echo $order_data->product_count ?></td>
-                            			<td class="td-product-unit"><?php echo $order_data->unit_type ?></td>
-                            			<td class="td-product-type"><?php echo $order_data->product_type ?></td>
-                            			<td class="td-product-price"><?php echo $order_data->buy_price ?></td>
-										<td class="td-product-total"><?php echo $order_data->product_total ?></td>
+                        				<td class="td-po-number"><?php echo $data->po_number ?></td>
+                            			<td class="td-po-date"><?php echo $data->po_date ?></td>
+                            			<td class="td-order-status"><?php echo $data->status ?></td>
+                                        <td class="td-order-op"><div class="see-order-details"><?php echo anchor("order/order_details/$data->po_number", 'See Details', array('title'=>'See Details', 'class'=>'order-details-link')) ?></div><div class="order-print"><?php echo anchor("order/order_print/$data->po_number", 'Print', array('title'=>'Print','class'=>'order-details-print')) ?></div></td>
                         			</tr>
-                            	
-                              	<?php endforeach ?> 		
-                            	
-                        	</table><!--/table-order-->
+								
+                                <?php endforeach ?>
                         
-                        
-                        
-                        	<div class="total-order"><!--total-->
-                        		<span>Total :
-                            	<?php $query_data = $this->order_meta_data_model->get_total_order($data->po_number)?>
-                            		<?php foreach($query_data as $data_total) :?>
-                                		<?php echo $data_total->total_order ?>
-                               		<?php endforeach ?>
-                            	</span>
-                        	</div><!--/total-->
-                        
-                        </div><!--/order-data-wrapper-->
-                        
-                        <div class="clear"></div>
-                        
-                        <?php endforeach ?>
+                        </table><!--/table-order-->
                         
                    <?php else : ?>
                     

@@ -11,6 +11,9 @@
      * 
      *  3. order_list() : retrieve and display order data
      *     view : order-list.php
+     * 
+     *  4. order_details($po_number) : display order data based on po_number
+     *     view: order-details.php
      *            
      */
     
@@ -204,5 +207,28 @@
             $this->load->view('order-list', $data);
         }
         //end order_list() method
-     
+        
+        
+        
+        // start order_details() method
+        // method to retrieve order details, based on po_number
+        public function order_details($po_number)
+        {
+            $query_meta_data = $this->order_meta_data_model->get_meta_data($po_number);
+            
+            if($query_meta_data)
+            {
+                $data['records'] = $query_meta_data;
+            }
+            
+            $this->load->view('order-details', $data);
+            
+        }
+        //end order_details() method
+        
+        
+        public function order_edit()
+        {
+            
+        }
     }

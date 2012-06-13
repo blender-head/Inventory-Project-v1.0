@@ -15,7 +15,36 @@ $(document).ready(
     			return staticCounter.counter;
 			}
 			
+			$('#edit-data').click(function() {
+				
+				$('th.th-product-code').hide();
+				$('th.th-product-code-edit').show();
+				$('td.td-product-code').hide();
+				$('td.td-product-code-edit').show();
+				$('input.product-code-edit').css("visibility","visible");
+				$('td.td-product-expiry-date').show();
+				$('th.th-product-expiry-date').show();
+				$('th.th-payment-method').show();
+				$('td.td-payment-method').show();
+				$('#order-status-select').show();
+				$('.status-order').hide();
+				
+			});
 			
+			$('#cancel-edit').click(function() {
+				$('th.th-product-code-edit').hide();
+				$('td.td-product-code-edit').hide();
+				$('th.th-product-code').show();
+				$('td.td-product-code').show();
+				$('td.td-product-expiry-date').hide();
+				$('th.th-product-expiry-date').hide();
+				$('th.th-payment-method').hide();
+				$('td.td-payment-method').hide();
+				$('#order-status-select').hide();
+				$('.status-order').show();
+			});
+			
+					
 			// add row dynamically to #add-order table
 			$("#add-order").click(
 			
@@ -68,6 +97,12 @@ $(document).ready(
 			{
 				cssName: "android",
 				position: "inherit"
+			});
+			
+			$(".prod-exp-time").glDatePicker(
+			{
+				cssName: "android",
+				position: "absolute"
 			});
 			
 			// calculate order automatically
@@ -149,8 +184,8 @@ $(document).ready(
 					var product_code = $("input[name^=product-code-" + i + "]").val();
 					var product_name = $("input[name^=product-name-" + i + "]").val();
 					var product_qty = $("input[name^=product-count-" + i + "]").val();
-					var product_unit = $('.product-unit').val();
-					var product_type = $(".product-type").val();
+					var product_unit = $("select[name^=product-unit-" + i + "]").val();
+					var product_type = $("select[name^=product-type-" + i + "]").val();
 					var product_price = $("input[name^=product-price-" + i + "]").val();
 					var product_total = $("input[name^=product-total-" + i + "]").val();
 					// sets ajax post data
@@ -256,15 +291,8 @@ $(document).ready(
 				
 			});
 			
-			$(".see-details").click(
-				function () 
-				{
-					$(".order-data-wrapper").toggle("slow");
-					return false;
-		    	}
 			
-			);
-			
+
 	}
 		
 );
