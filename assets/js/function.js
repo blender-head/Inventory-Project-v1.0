@@ -268,6 +268,11 @@ $(document).ready(
 										//start success function #2
 										{
 											
+											if(data.data_saved)
+											{
+												alert(data.data_saved);
+											}
+											
 											if(data.po_number_error)
 											{
 												alert(data.po_number_error);

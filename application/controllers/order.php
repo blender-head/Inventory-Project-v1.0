@@ -155,6 +155,9 @@
             else
             {
                 $order_save_data = $this->order_data_model->save_data($po_number, $po_date, $product_code, $product_name, $product_qty, $product_unit, $product_type, $product_price, $product_total);
+                $success = 'data saved';
+                $data = array('data_saved'=>$order_save_data);
+                echo json_encode($data);
             }
           }
           
