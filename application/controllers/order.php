@@ -99,15 +99,19 @@
             else
             {
                 $get_po_number = $this->order_meta_data_model->get_meta_data($po_number);
+                $get_data = $this->order_data_model->get_data($po_number);
                 
-                if(sizeof($get_po_number) > 0)
+                $get_po_number_val = sizeof($get_po_number);
+                $get_data_val = sizeof($get_data);
+                
+                if($get_po_number_val and $get_data_val)
                 {
                     foreach($get_po_number as $result)
                     {
                         $po_number = $result->po_number;
                     }
                     
-                    $data = array('po_number_exist'=>$po_number, 'po_number'=>$po_number, 'po_date'=>$po_date, 'counter'=>$counter);
+                    $data = array('po_number_exist'=>$po_number);
                     echo json_encode($data);  
                 }
                 else
@@ -147,6 +151,11 @@
             
             if($this->form_validation->run() == FALSE)
             {
+                $error = '<div id="dialog-overlay"></div>';
+		$error .= '<div id="dialog-box">';
+		$error .= '<div class="dialog-content">';
+                $error .= '<div id="dialog-message"></div>';
+		$error .= '<a href="#" class="button">Close</a></div></div>';
                 $po_number_error = form_error('po_number');
                 $po_date_error = form_error('po_date');
                 $product_code_error = form_error('product_code');
@@ -223,8 +232,15 @@
         //end order_details() method
         
         
-        public function order_edit()
+        public function order_edit($po_number)
         {
+           $query_meta_data = $this->order_meta_data_model->get_meta_data($po_number);
             
+            if($query_meta_data)
+            {
+                $data['records'] = $query_meta_data;
+            }
+            
+            $this->load->view('order-edit', $data);
         }
     }

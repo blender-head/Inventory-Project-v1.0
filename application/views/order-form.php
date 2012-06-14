@@ -115,6 +115,9 @@
                         
                         
                     </form><!--/form-->
+                    
+					<div class="test">Test</div>
+                    <div class="test2">Test</div>
                 
                 </div><!--/main-content-inner-->
             

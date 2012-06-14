@@ -6,10 +6,10 @@
 <?php echo css_asset('style.css'); ?>
 <?php echo css_asset('android.css'); ?>
 <?php echo css_asset('default.css'); ?>
-<script type="text/javascript" src="<?php echo js_asset_url('jquery-1.7.2.min.js', ''); ?>"></script>
+<?php echo css_asset('dialog.css'); ?>
+<script type="text/javascript" src="<?php echo js_asset_url('jquery.js', ''); ?>"></script>
 <script type="text/javascript" src="<?php echo js_asset_url('function.js', ''); ?>"></script>
 <script type="text/javascript" src="<?php echo js_asset_url('glDatePicker.js', ''); ?>"></script>
-<script type="text/javascript" src="<?php echo js_asset_url('jquery.ajaxq.js', ''); ?>"></script>
 </head>
 
 <body>

@@ -45,6 +45,12 @@
 												?>
                                             </div><!--/order-print-->
                                             
+                                            <div class="order-edit"><!--order-delete-->
+												<?php 
+													echo anchor("order/order_edit/$data->po_number", 'Edit', array('title'=>'Edit','class'=>'order-details-edit')) 
+												?>
+                                            </div><!--/order-delete-->
+                                            
                                             <div class="order-delete"><!--order-delete-->
 												<?php 
 													echo anchor("order/order_delete/$data->po_number", 'Print', array('title'=>'Delete','class'=>'order-details-delete')) 

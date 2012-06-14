@@ -4,8 +4,8 @@
     {
         public function index()
         {
-           $length = $this->input->post('length');
-           
-           echo $length;
+           $po_number= 123456;
+           $get_data = $this->order_data_model->get_data($po_number);
+           echo sizeof($get_data);
         }
     }

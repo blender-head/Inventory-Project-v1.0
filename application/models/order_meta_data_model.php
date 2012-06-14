@@ -24,6 +24,16 @@
         }
         // end save_meta_data() method
         
+        public function update_data($po_number, $po_date, $supplier, $key_person, $address, $instruction, $total_order, $status)
+        {
+            $query = $this->db->query("UPDATE order_data set po_number='$po_number', po_date='$po_date', suplier='$supplier', key_person='$key_person', address='$address', unit_type='$unit_type', instruction='$instruction', total_order='$total_order', status='$status')
+                                       WHERE po_number = '$po_number'
+                                      ");
+            return $query;
+        }
+        
+        
+        
         
         // method to retrive order meta data based on po_number
         public function get_meta_data($po_number)

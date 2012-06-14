@@ -34,18 +34,14 @@
                             <table id="table-order-details"><!--table-order-details-->
                         
                     			<tr>
-                        			<th class="th-product-code">Code</th>
-                                    <th class="th-product-code-edit">Code</th>
-                            		<th class="th-product-name">Item Name</th>
-                                    <th class="th-product-name-edit">Item Name</th>
-                            		<th>Qty</th>
+                        			<th>Code</th>
+                                    <th>Item Name</th>
+                                    <th>Qty</th>
                             		<th>Unit</th>
                             		<th>Type</th>
-                                    <th class="th-product-expiry-date">Expiry Date</th>
-                            		<th>Buy Price</th>
+                                    <th>Buy Price</th>
                             		<th>Total</th>
-                                    <th class="th-payment-method">Payment</th>
-                        		</tr>
+                                </tr>
                             
                              	<?php  $query_data = $this->order_data_model->get_data($data->po_number) ?>
                                 <?php  $query_payment = $this->payment_method_model->get_all_payment() ?>
@@ -54,41 +50,12 @@
                             	                               	
                         			<tr>
                         				<td class="td-product-code"><?php echo $order_data->product_number ?></td>
-                                        <td class="td-product-code-edit">
-                                        	<input type="text" name="product-code" class="product-code-edit" value="<?php echo $order_data->product_number ?>" />
-                                        </td>
-                            			<td class="td-product-name"><?php echo $order_data->product_name ?></td>
-                                        <td class="td-product-name-edit">
-                                        	<input type="text" name="product-name" class="product-name-edit" value="<?php echo $order_data->product_name ?>" />
-                                        </td>
-                            			<td class="td-product-count"><?php echo $order_data->product_count ?></td>
+                                        <td class="td-product-name"><?php echo $order_data->product_name ?></td>
+                                        <td class="td-product-count"><?php echo $order_data->product_count ?></td>
                             			<td class="td-product-unit"><?php echo $order_data->unit_name ?></td>
                             			<td class="td-product-type"><?php echo $order_data->product_type_name ?></td>
-                                        <td class="td-product-expiry-date">
-                                        
-                                        	<?php
-											
-												if($order_data->product_type_name == "Expired Time")
-												{
-													echo '<input type="text" name="prod-exp-time" class="prod-exp-time" />';
-												}
-												else
-												{
-													echo 'n/a';	
-												}
-											
-											?>
-                                        
-                                        </td>
                             			<td class="td-product-price"><?php echo $order_data->buy_price ?></td>
 										<td class="td-product-total"><?php echo $order_data->product_total ?></td>
-                                        <td class="td-payment-method">
-                                        	<select name="payment-method">
-                                        		<?php foreach($query_payment as $payment_method) : ?>
-                                        			<option value="<?php echo $payment_method->id ?>"><?php echo $payment_method->payment_method ?></option>
-                                               	<?php endforeach ?>
-                                           	 </select>
-                                        </td>
                         			</tr>
                             	
                               	<?php endforeach ?> 		
@@ -96,10 +63,7 @@
                         	</table><!--/table-order-details-->
                         
                         	<div class="order-op"><!--order-op-->
-								<input type="button" name="edit-data" value="edit data" id="edit-data" />
-                                <input type="button" value="save"  id="save-data" />
-                                <input type="button" value="cancel"  id="cancel-edit" />
-                                <input type="button" value="print"  id="print-order" />
+								<input type="button" value="print"  id="print-order" />
                         	</div><!--/order-op-->
                         
                         	<div class="order-total"><!--order-total-->

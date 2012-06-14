@@ -1,12 +1,41 @@
 // all jquery operations goes here...
 
+function popup(message) {
+		
+	// get the screen height and width  
+	var maskHeight = $(document).height();  
+	var maskWidth = $(window).width();
+	
+	// calculate the values for center alignment
+	var dialogTop =  (maskHeight/2) - ($('#dialog-box').height());  
+	var dialogLeft = (maskWidth/2) - ($('#dialog-box').width()/2); 
+	
+	// assign values to the overlay and dialog box
+	$('#dialog-overlay').css({height:maskHeight, width:maskWidth}).show();
+	$('#dialog-box').css({top:dialogTop, left:dialogLeft}).show();
+	
+	// display the message
+	$('#dialog-message').html(message);
+			
+}
 
 $(document).ready(
 	
-	
+			
 		function() {
 			
-
+			// if user clicked on button, the overlay layer or the dialogbox, close the dialog	
+			$('a.btn-ok, #dialog-overlay, #dialog-box').click(function () {		
+				$('#dialog-overlay, #dialog-box').hide();		
+				return false;
+			});
+	
+			// if user resize the window, call the same function again
+			// to make sure the overlay fills the screen and dialogbox aligned to center	
+			$(window).resize(function () {
+				//only do it if the dialog box is not hidden
+				if (!$('#dialog-box').is(':hidden')) popup();		
+			});	
 			
 			// function to generate static counter
 			function staticCounter() {
@@ -17,38 +46,7 @@ $(document).ready(
     			return staticCounter.counter;
 			}
 			
-			
-			
-			$('#edit-data').click(function() {
-				
-				$('th.th-product-code').hide();
-				$('th.th-product-code-edit').show();
-				$('td.td-product-code').hide();
-				$('td.td-product-code-edit').show();
-				$('input.product-code-edit').css("visibility","visible");
-				$('td.td-product-expiry-date').show();
-				$('th.th-product-expiry-date').show();
-				$('th.th-payment-method').show();
-				$('td.td-payment-method').show();
-				$('#order-status-select').show();
-				$('.status-order').hide();
-				
-			});
-			
-			$('#cancel-edit').click(function() {
-				$('th.th-product-code-edit').hide();
-				$('td.td-product-code-edit').hide();
-				$('th.th-product-code').show();
-				$('td.td-product-code').show();
-				$('td.td-product-expiry-date').hide();
-				$('th.th-product-expiry-date').hide();
-				$('th.th-payment-method').hide();
-				$('td.td-payment-method').hide();
-				$('#order-status-select').hide();
-				$('.status-order').show();
-			});
-			
-					
+						
 			// add row dynamically to #add-order table
 			$("#add-order").click(
 			
@@ -185,28 +183,40 @@ $(document).ready(
      					success: function (data)
 						// start success function #1
 						{
-							if(data.po_number_exist)
-							{
-								alert(data.counter);	
-							}
+							/*
+							$.each(data, function(name, val){
+    							//alert(name);
+								
+								alert(val.length);
+								
+								/*
+								switch(name){
+        							case 'po_number':
+            							popup(data.po_number_error);
+           	 							break;
+        							case 'po_date':
+            							popup(data.po_date_error);
+            							break;
+        							default:
+            							$el.val(val);
+    							}
 							
-							if(data.data_saved)
-							{
-								alert(data.data_saved);
-							}
+							});
+							*/
+							
 							
 							if(data.po_number_error)
 							{
-								alert(data.po_number_error);
-								//$('.form-error.po-number-error').html(data.po_number_error).css("display","block");
+								//$('.form-error.po-number-error').html(data.po_number_error);
+								$('.form-error.po-number-error').html(data.po_number_error);
 							}
-						
+							
 							if(data.po_date_error)
 							{
-								alert(data.po_date_error);
+								$('.test2').show();
 								//$('.form-error.po-date-error').html(data.po_date_error).css("display","block");
 							}
-						
+							/*
 							if(data.supplier_error)
 							{
 								alert(data.supplier_error);
@@ -224,107 +234,116 @@ $(document).ready(
 								alert(data.total_order_error);
 								//return data.product_total_error;
 							}
-							
-							arr = [];
-							
-							$("input[name^=product-code]").each
-							(
-				
-								function () 
-								{
-    								var items = $(this).val();
-									arr.push(items);
-								}
-					
-							);
-				
-							var cont = arr.length;
-				
-							var i = 0;
-							
-							//start while
-							while(i < cont)
+							*/
+								
+							if(data.po_number_exist)
 							{
-								// sets order data values
-								var product_code = $("input[name^=product-code-" + i + "]").val();
-								var product_name = $("input[name^=product-name-" + i + "]").val();
-								var product_qty = $("input[name^=product-count-" + i + "]").val();
-								var product_unit = $("select[name^=product-unit-" + i + "]").val();
-								var product_type = $("select[name^=product-type-" + i + "]").val();
-								var product_price = $("input[name^=product-price-" + i + "]").val();
-								var product_total = $("input[name^=product-total-" + i + "]").val();
+								alert(data.po_number_exist);	
+							}
+							else
+							{
+							
+								arr = [];
+							
+								$("input[name^=product-code]").each
+								(
+				
+									function () 
+									{
+    									var items = $(this).val();
+										arr.push(items);
+									}
+					
+								);
+				
+								var cont = arr.length;
+				
+								var i = 0;
+							
+								//start while
+								while(i < cont)
+								{
+									// sets order data values
+									var product_code = $("input[name^=product-code-" + i + "]").val();
+									var product_name = $("input[name^=product-name-" + i + "]").val();
+									var product_qty = $("input[name^=product-count-" + i + "]").val();
+									var product_unit = $("select[name^=product-unit-" + i + "]").val();
+									var product_type = $("select[name^=product-type-" + i + "]").val();
+									var product_price = $("input[name^=product-price-" + i + "]").val();
+									var product_total = $("input[name^=product-total-" + i + "]").val();
 								
-								var postdata = {
-												'po_number':data.po_number,
-												'po_date':data.po_date,
-												'product_code':product_code,
-												'product_name':product_name,
-												'product_qty':product_qty,
-												'product_unit':product_unit,
-												'product_type':product_type,
-												'product_price':product_price,
-												'product_total':product_total
-												};
+									var postdata = {
+													'po_number':data.po_number,
+													'po_date':data.po_date,
+													'product_code':product_code,
+													'product_name':product_name,
+													'product_qty':product_qty,
+													'product_unit':product_unit,
+													'product_type':product_type,
+													'product_price':product_price,
+													'product_total':product_total
+													};
 												
-								$.ajax({
-								
-									type: "POST",
-									dataType: "json",
-									url: "http://localhost/alkes/index.php/order/order_save_data/",
-     								data: postdata,
-     								success: function (data) 
-										//start success function #2
-										{
-											
-											if(data.data_saved)
+									$.ajax({
+										type: "POST",
+										dataType: "json",
+										url: "http://localhost/alkes/index.php/order/order_save_data/",
+     									data: postdata,
+     									success: function (data) 
+											//start success function #2
 											{
-												alert(data.data_saved);
-											}
+												/*
+												if(data.data_saved)
+												{
+													alert(data.data_saved);
+												}
 											
-											if(data.po_number_error)
-											{
-												alert(data.po_number_error);
-												$("input[name^=product-code-" + i + "]").css("outline","1px solid red");
-											}
+												if(data.po_number_error)
+												{
+													alert(data.po_number_error);
+													$("input[name^=product-code-" + i + "]").css("outline","1px solid red");
+												}
 											
-											if(data.po_date_error)
-											{
-												alert(data.po_date_error);
-												$("input[name^=product-code-" + i + "]").css("outline","1px solid red");
-											}
+												if(data.po_date_error)
+												{
+													alert(data.po_date_error);
+													$("input[name^=product-code-" + i + "]").css("outline","1px solid red");
+												}
 						
-											if(data.product_name_error)
-											{
-												alert(data.product_name_error);
-											}
+												if(data.product_name_error)
+												{
+													alert(data.product_name_error);
+												}
 								
-											if(data.product_qty_error)
-											{
-												alert(data.product_qty_error);
-											}
+												if(data.product_qty_error)
+												{
+													alert(data.product_qty_error);
+												}
 								
-											if(data.product_price_error)
-											{
-												alert(data.product_price_error);
-											}
+												if(data.product_price_error)
+												{
+													alert(data.product_price_error);
+												}
 								
-											if(data.product_total_error)
-											{
-												alert(data.product_total_error);
-											}
+												if(data.product_total_error)
+												{
+													alert(data.product_total_error);
+												}
 									
-											/*
-											if(data.location)
-											{
-												window.location = data.location;
-											}
-											*/
+												/*
+												if(data.location)
+												{
+													window.location = data.location;
+												}
+												*/
 											} // end success function #2
 							
 									}); // end ajax call #2
 												
-								i++
-							} // end while
+									i++
+								} // end while
+							
+							} // end else
 							
 						} // end success function #1
 						

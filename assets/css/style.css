@@ -11,6 +11,7 @@
 		* table order styles
 		* order list styles
 		* order details styles
+		* order edit styles
 	5. FOOTER STYLES
 	6. FORM ERROR STYLES
 
@@ -576,10 +577,10 @@ table#table-order td {
 }
 
 table#table-order td.td-order-op {
-	width: 15%;	
+	width: 17%;	
 }
 
-table#table-order td.td-order-op div.see-order-details, div.order-print, div.order-delete {
+table#table-order td.td-order-op div.see-order-details, div.order-print, div.order-edit, div.order-delete {
 	float: left;	
 	overflow: hidden;
 }
@@ -590,6 +591,10 @@ div.see-order-details {
 }
 
 div.order-print {
+	margin-right: 10px;	
+}
+
+div.order-edit {
 	margin-right: 10px;	
 }
 
@@ -608,6 +613,15 @@ a.order-details-print {
 	height: 15px;
 	background: url(../image/print.png) no-repeat;	
 }
+
+a.order-details-edit {
+	display: block;
+	text-indent: -9999px;
+	width: 15px;
+	height: 15px;
+	background: url(../image/edit.png) no-repeat;	
+}
+
 
 a.order-details-delete {
 	display: block;
@@ -701,39 +715,6 @@ table#table-order-details td.td-product-expiry-date {
 	width: 10%;	
 }
 
-table#table-order-details td.td-product-expiry-date {
-	display: none;
-}
-
-table#table-order-details th.th-product-expiry-date {
-	display: none;	
-}
-
-table#table-order-details td.td-payment-method {
-	display: none;
-}
-
-table#table-order-details th.th-payment-method {
-	display: none;	
-}
-
-table#table-order-details th.th-product-code-edit {
-	display: none;	
-}
-
-table#table-order-details td.td-product-code-edit {
-	display: none;
-}
-
-table#table-order-details th.th-product-name-edit {
-	display: none;
-}
-
-table#table-order-details td.td-product-name-edit {
-	display: none;
-}
-
-
 div.order-total {
 	float: right;
 	margin-top: 10px;	
@@ -752,26 +733,34 @@ div.order-op {
 	margin-top: 15px;	
 }
 
-select#order-status-select {
-	display: none;
-}
-
-input.product-code-edit {
-	
-}
-
-
-/*
-table#table-order-details th.payment-method-th {
-	display: none;	
-}
-
-table#table-order-details td.td-payment-method {
-	display: none;	
-}
-*/
 
 /* end order details styles */
+
+
+/* order edit styles */
+
+input.product-code-edit {
+	width : 70px;	
+}
+
+input.product-qty-edit {
+	width: 50px;	
+}
+
+input.prod-exp-time {
+	width: 65px;	
+}
+
+input.buy-price-edit {
+	width: 70px;	
+}
+
+input.total-price-edit {
+	width: 70px;	
+}
+
+
+/* end order edit styles */
 
 
 /* END CONTENT STYLES */
@@ -803,7 +792,6 @@ div#footer p {
 	position: relative;
 	left: 182px;	
 	margin-top: 5px;
-	display: none;
 }
 
 div.form-error p {
@@ -816,6 +804,13 @@ div.form-error p {
 	outline: 1px solid red;	
 }
 
+.test {
+	display: none;	
+}
+
+.test2 {
+	display: none;	
+}
 
 /* END FORM ERROR STYLES */
 
