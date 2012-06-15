@@ -20,16 +20,7 @@
                         	                         
                             <p>Special Instructions : <?php echo $data->instructions ?></p>
                         	                       
-                        	<p>Status : 
-                            
-                            	<span class="status-order"><?php echo $data->status ?></span>
-                                <span>
-                                	<select name="order-status-select" id="order-status-select">
-                                    	<option>Invoice Received</option>
-                                    </select>
-                                </span>
-                            
-                            </p>
+                        	<p>Status : <span class="status-order"><?php echo $data->status ?></span></p>
                             
                             <table id="table-order-details"><!--table-order-details-->
                         
@@ -76,10 +67,6 @@
                         	</div><!--/order-total-->
                             
                             </form>
-                        
-                        
-                        
-                        <div class="clear"></div>
                         
                         <?php endforeach ?>
                         

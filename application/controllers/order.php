@@ -49,6 +49,7 @@
             {
                 //send $product_type variable to order_form.php view
                 $data['product_type'] = $query_prod_type;
+                $data['title'] = 'Order Form';
             }
             
             $this->load->view('order-form', $data);
@@ -209,6 +210,7 @@
                 $data['records'] = 0;
             }
             
+            $data['title'] = "Order Details";
             $this->load->view('order-list', $data);
         }
         //end order_list() method
@@ -226,6 +228,7 @@
                 $data['records'] = $query_meta_data;
             }
             
+            $data['title'] = "Order Details PO Number " . $po_number;
             $this->load->view('order-details', $data);
             
         }
@@ -241,6 +244,13 @@
                 $data['records'] = $query_meta_data;
             }
             
+            $data['title'] = "Order Edit PO Number " . $po_number;
             $this->load->view('order-edit', $data);
         }
+        
+        public function order_print($po_number)
+        {
+            
+        }        
+               
     }
